@@ -1,6 +1,7 @@
+//test
 import '../css/App.css';
 import React from 'react';
-import {Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 //App components
 import Header from './Header'
@@ -13,18 +14,18 @@ function App() {
 
   return (
     <div>
-        <Header/>
+      <Header />
 
-        <Routes>
-            <Route path="/" element={<Home/>} />
-            <Route path="/products" element={<ProductsOverview/>} />
-            {/* <Route path="/products/details-:productid" element={<ProductDetails />} /> */}
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<ProductsOverview />} />
+        {/* <Route path="/products/details-:productid" element={<ProductDetails />} /> */}
+      </Routes>
 
-        <Footer/>
-      
+      <Footer />
+
     </div>
   );
 }
-  
+
 export default App;
