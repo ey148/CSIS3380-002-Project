@@ -1,0 +1,148 @@
+/* ================================= 
+  WEB FONTS
+==================================== */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
+
+/* ================================= 
+  ELEMENT STYLES
+==================================== */
+
+* {
+  box-sizing: border-box;
+}
+body {
+  color: #576366;
+  background: white;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+h1,
+h2,
+ul {
+  margin: 0;
+  padding: 0;
+}
+h2 {
+  color: #404040;
+  font-size: 1.6em;
+  margin-bottom: 1.25em;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  color: #3b80d1;
+}
+hr {
+  border: 0;
+  height: 0;
+  margin: 2.3em 0 2em 0;
+  border-top: 1px solid rgba(0, 0, 0, .1);
+}
+
+/* ================================= 
+  HEADER
+==================================== */
+
+.home a,
+input,
+button {
+  padding: .5em;
+  font-size: .9em;
+  margin-right: 10px;
+  border: none;
+  border-radius: 3px;
+  border: solid 1px #ccc;
+  outline: none;
+}
+
+
+/* FORM & BUTTON STYLES -------- */
+
+.home a,
+input,
+button {
+  padding: .5em;
+  font-size: .9em;
+  margin-right: 10px;
+  border: none;
+  border-radius: 3px;
+  border: solid 1px #ccc;
+  outline: none;
+}
+button {
+  color: white;
+  background: #4188dc;
+  padding-left: 1em;
+  padding-right: 1em;
+  cursor: pointer;
+  border-color: rgba(0,0,0, .1);
+}
+
+/* ================================= 
+  LAYOUT & PAGE STYLES
+==================================== */
+
+.container {
+  width: 95%;
+  max-width: 780px;
+  padding-bottom: 2em;
+  margin: 0 auto 2em;
+  background: #fff;
+  border-radius: .5em;
+  box-shadow: 0 3px rgba(0,0,0, .1);
+  overflow: hidden;
+}
+header {
+  background: #edeff0;
+  margin-bottom: 2em;
+}
+.main-content {
+  padding: 1em 2em;
+}
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* MAIN NAV -------- */
+
+.main-nav a {
+  font-size: .95em;
+  color: #222;
+  text-align: center;
+  text-transform: uppercase;
+  display: block;
+  padding: 1em;
+  transition: .2s;
+}
+.main-nav a:hover,
+.main-nav .active {
+  color: #fff;
+  background: #3b80d1;
+}
+
+
+
+  /* MAIN NAV -------- */
+  .icn-logo {
+    margin-right: auto;
+    padding: 0 2em;
+  }
+  header,
+  .main-nav {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .main-nav a {
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    padding: 1.25em 1.5em;
+  }
+  .main-nav a:hover {
+    border-color: rgba(0,0,0, .1);
+  }
+  
