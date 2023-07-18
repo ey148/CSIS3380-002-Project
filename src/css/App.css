@@ -8,7 +8,7 @@ body {
   width: 90%;
   max-width: 1100px;
   margin: 1.1em auto;
-  
+
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -18,7 +18,7 @@ body {
 
 /* Header */
 
-header{
+header {
   background-color: burlywood;
   margin: 0px;
   padding: 0px;
@@ -76,14 +76,14 @@ header{
 }
 
 /* Product Box */
-.box { 
+.box {
   box-sizing: border-box;
   background: white;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
   position: relative;
-  border: 1px solid lightgrey; 
+  border: 1px solid lightgrey;
 }
 
 .box div {
@@ -116,4 +116,25 @@ footer {
 
 .CompanyInfo {
   display: inline-block;
+}
+
+/* Search Bar on Products Overview page */
+.product-nav li {
+  display: inline-block;
+}
+
+.product-nav li+li {
+  margin-left: .6em;
+}
+
+.searchbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-nav li:hover,
+.product-nav li:active {
+  color: #fff;
+  background: #39add1;
 }
