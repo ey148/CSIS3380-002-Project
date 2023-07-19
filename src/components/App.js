@@ -7,6 +7,7 @@ import Header from './Header'
 import Home from './Home'
 import ProductsOverview from './ProductsOverview'
 // import ProductDetails from './ProductDetails'
+import ContactUs from './ContactUs'
 import Footer from "./Footer"
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductsOverview />} />
         {/* <Route path="/products/details-:productid" element={<ProductDetails />} /> */}
+        <Route path="/contact" element={<ContactUs />} />
       </Routes>
 
       <Footer />
