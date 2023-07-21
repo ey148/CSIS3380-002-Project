@@ -43,7 +43,6 @@ header {
 
 .main-content {
   background-color: bisque;
-  display: flex;
   justify-content: center;
 }
 
@@ -140,25 +139,26 @@ footer {
 }
 
 /* ProductDetails */
-.content-display{
-    width: 80%;
-    margin: 0 10%;
-    
+.content-display {
+  width: 80%;
+  margin: 0 10%;
+
 }
 
-.LR-display{
-    display: flex;
+.LR-display {
+  display: flex;
 }
 
-#detailLeftDiv, #detailRightDiv {
-    flex: 1;
+#detailLeftDiv,
+#detailRightDiv {
+  flex: 1;
 }
 
-.desc{
-    font-size: 10pt;
+.desc {
+  font-size: 10pt;
 }
 
-.highlightText{
-    color: red;
-    font-weight: bold;
+.highlightText {
+  color: red;
+  font-weight: bold;
 }
