@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ALLproducts } from '../../src/data/products';
 import ProductBox from './ProductBox';
 
+
 const ProductsOverview = () => {
+
+    let navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('');
 
@@ -13,14 +17,22 @@ const ProductsOverview = () => {
         return titleMatches && categoryMatches;
     });
 
+    // check productId when clickings
+    const handleProductClick = (productId) => {
+        console.log(productId);
+        navigate(`/product/${productId}`, { state: { productId: productId } } );
+    }
+
     const products = filteredProducts.map((product) => (
         <ProductBox
+            productData={product}
             title={product.title}
             brand={product.brand}
             price={product.price}
             desc={product.description}
             img={product.img_src}
-            key={product.id}
+            productId={product.id}
+            selectedProduct={handleProductClick}
         />
     ));
 
@@ -32,6 +44,7 @@ const ProductsOverview = () => {
     const handleCategoryClick = (category) => {
         setSelectedCategory(category);
     };
+    
 
     return (
         <div className="main-content">

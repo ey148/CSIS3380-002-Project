@@ -43,6 +43,8 @@ header {
 
 .main-content {
   background-color: bisque;
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -93,8 +95,6 @@ header {
   margin-bottom: 1.5em;
 }
 
-
-
 footer {
   background-color: burlywood;
   position: relative;
@@ -137,4 +137,28 @@ footer {
 .product-nav li:active {
   color: #fff;
   background: #39add1;
+}
+
+/* ProductDetails */
+.content-display{
+    width: 80%;
+    margin: 0 10%;
+    
+}
+
+.LR-display{
+    display: flex;
+}
+
+#detailLeftDiv, #detailRightDiv {
+    flex: 1;
+}
+
+.desc{
+    font-size: 10pt;
+}
+
+.highlightText{
+    color: red;
+    font-weight: bold;
 }
