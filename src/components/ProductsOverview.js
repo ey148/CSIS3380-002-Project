@@ -20,7 +20,7 @@ const ProductsOverview = () => {
     // check productId when clickings
     const handleProductClick = (productId) => {
         console.log(productId);
-        navigate(`/product/${productId}`, { state: { productId: productId } } );
+        navigate(`/product/${productId}`, { state: { productId: productId } });
     }
 
     const products = filteredProducts.map((product) => (
@@ -33,6 +33,7 @@ const ProductsOverview = () => {
             img={product.img_src}
             productId={product.id}
             selectedProduct={handleProductClick}
+            key={product.id.toString()}
         />
     ));
 
@@ -44,7 +45,7 @@ const ProductsOverview = () => {
     const handleCategoryClick = (category) => {
         setSelectedCategory(category);
     };
-    
+
 
     return (
         <div className="main-content">
