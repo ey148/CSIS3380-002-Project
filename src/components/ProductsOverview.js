@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { ALLproducts } from '../../src/data/products';
 import ProductBox from './ProductBox';
 
-
 const ProductsOverview = () => {
 
     let navigate = useNavigate();

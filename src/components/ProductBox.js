@@ -4,7 +4,7 @@ const ProductBox = (props) => {
 
     return ( 
         <div className="box"  onClick={() => props.selectedProduct(props.productId)}>
-            <img className="" src={props.img} alt="product" />
+            <img className="detailImg" src={props.img} alt="product" />
             <div>
                 <h5>{props.title}</h5>
                 <ul>

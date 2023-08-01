@@ -360,6 +360,6 @@ export const ALLproducts = [
     stock: 50,
     description: "This 7-piece camping cookware set from is perfect for any outdoor adventure. The set is made from durable stainless steel and includes a spatula, pot spoon, clip, scissors, kitchen knife, cutting board, and rice spoon. he storage bag is 36.5*21.5cm. Enjoy delicious meals while camping or hiking with this convenient and stylish cookware set.",
     img_src: "./images/30/AilitorCampingCookwareKit_01.jpg",
-    id: "item-32",
+    id: "item-33",
   },
 ];
