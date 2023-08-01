@@ -166,7 +166,7 @@ export const ALLproducts = [
   },
   {
     title: "Snow Peak Folding Ladle",
-    category: "Cooking Cookware",
+    category: "Cooking Utensils",
     brand: "Snow Peak",
     model: "CS-252",
     price: 16.95,
@@ -331,7 +331,7 @@ export const ALLproducts = [
   },
   {
     title: "Woods™ Heritage Cast Iron Non-Stick Camping Cook Set",
-    category: "Camping Cookware",
+    category: "Cooking Utensils",
     brand: "Woods™",
     model: "076-6085-2",
     price: 199.99,
@@ -342,7 +342,7 @@ export const ALLproducts = [
   },
   {
     title: "Winterial Camping Cookware and Pot Set",
-    category: "Camping Cookware",
+    category: "Cooking Utensils",
     brand: "Winterial",
     model: "FBA_WIN-COOK",
     price: 73.33,
@@ -353,7 +353,7 @@ export const ALLproducts = [
   },
   {
     title: "OUTDOOR KITCHENWARE Camping Cookware Kit",
-    category: "Camping Cookware",
+    category: "Cooking Utensils",
     brand: "OUTDOOR KITCHENWARE",
     model: "Ailitor",
     price: 79.99,
