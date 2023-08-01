@@ -55,9 +55,12 @@ const ProductsOverview = () => {
                     <input type='button' value='Search' id='searchBtn' onClick={handleSearch} />
                 </h4>
                 <ul className="product-nav">
-                    <li onClick={() => handleCategoryClick('Tent')}>Tents</li>
-                    <li onClick={() => handleCategoryClick('Cooking Utensils')}>Cooking Utensils</li>
-                    <li onClick={() => handleCategoryClick('Sleeping bags')}>Sleeping bags</li>
+                    <li className={selectedCategory === 'Tent' ? 'active' : ''}
+                        onClick={() => handleCategoryClick('Tent')}>Tents</li>
+                    <li className={selectedCategory === 'Cooking Utensils' ? 'active' : ''}
+                        onClick={() => handleCategoryClick('Cooking Utensils')}>Cooking Utensils</li>
+                    <li className={selectedCategory === 'Sleeping bags' ? 'active' : ''}
+                        onClick={() => handleCategoryClick('Sleeping bags')}>Sleeping bags</li>
                 </ul>
             </div>
 

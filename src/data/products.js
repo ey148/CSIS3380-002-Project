@@ -199,7 +199,7 @@ export const ALLproducts = [
   },
   {
     title: "Klymit KSB 20 Sleeping Bag",
-    category: "Sleeping Bag",
+    category: "Sleeping bags",
     brand: "Klymit",
     model: "KSB 20",
     price: 263.99,
@@ -265,7 +265,7 @@ export const ALLproducts = [
   },
   {
     title: "BESTEAM Warm & Cool Weather Sleeping Bag",
-    category: "Sleeping Bag",
+    category: "Sleeping bags",
     brand: "BESTEAM",
     model: "BT-SA-77",
     price: 44.99,
@@ -276,7 +276,7 @@ export const ALLproducts = [
   },
   {
     title: "The North Face Inferno Double Sleeping Bag",
-    category: "Sleeping Bag",
+    category: "Sleeping bags",
     brand: "The North Face",
     model: "Inferno",
     price: 1565.99,
@@ -287,7 +287,7 @@ export const ALLproducts = [
   },
   {
     title: "Coleman Kompact Rectangle Sleeping Bag",
-    category: "Sleeping Bag",
+    category: "Sleeping bags",
     brand: "Coleman",
     model: "Kompact",
     price: 99.99,
@@ -298,7 +298,7 @@ export const ALLproducts = [
   },
   {
     title: "Ohuhu Queen Size Sleeping Bag",
-    category: "Sleeping Bag",
+    category: "Sleeping bags",
     brand: "Ohuhu",
     model: "916-00015-23",
     price: 79.99,
@@ -309,7 +309,7 @@ export const ALLproducts = [
   },
   {
     title: "Quechua Double Sleeping Bag",
-    category: "Sleeping Bag",
+    category: "Sleeping bags",
     brand: "Quechua",
     model: "Arpenaz 10°",
     price: 120,
@@ -320,7 +320,7 @@ export const ALLproducts = [
   },
   {
     title: "Stansport Sof-Fleece Sleeping Bag",
-    category: "Sleeping Bag",
+    category: "Sleeping bags",
     brand: "Stansport",
     model: "510-10",
     price: 23.51,

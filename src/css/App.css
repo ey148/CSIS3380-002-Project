@@ -135,7 +135,7 @@ footer {
 }
 
 .product-nav li:hover,
-.product-nav li:active {
+.product-nav li.active {
   color: #fff;
   background: #39add1;
 }
