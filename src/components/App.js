@@ -9,6 +9,7 @@ import ProductsOverview from './ProductsOverview'
 import ProductDetails from './ProductDetails'
 import ContactUs from './ContactUs'
 import Footer from "./Footer"
+import ShoppingCart from './ShoppingCart';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductsOverview />} />
         <Route path="/product/:productId" element={<ProductDetails />} />
+        <Route path="/cart" element={<ShoppingCart/>}/>
         <Route path="/contact" element={<ContactUs />} />
       </Routes>
 
