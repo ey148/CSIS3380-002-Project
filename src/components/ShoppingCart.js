@@ -176,10 +176,10 @@ const ShoppingCart = () => {
                                         <td>{item.quantity}</td>
                                         <td>${item.priceSubTotal}</td>
                                         <td>
-                                            <button onClick={(event) => handleEdit(event, item._id)} style={{ border: 'none', backgroundColor: 'transparent', color: 'lightgray' }}>
+                                            <button onClick={(event) => handleEdit(event, item._id)} style={{ border: 'none', backgroundColor: 'transparent', color: 'black' }}>
                                                 <i className="bi bi-pen"></i>
                                             </button>
-                                            <button onClick={(event) => handleDelete(event, item._id)} style={{ border: 'none', backgroundColor: 'transparent', color: 'lightgray' }}>
+                                            <button onClick={(event) => handleDelete(event, item._id)} style={{ border: 'none', backgroundColor: 'transparent', color: 'black' }}>
                                                 <i className="bi bi-trash"></i>
                                             </button>
                                         </td>
