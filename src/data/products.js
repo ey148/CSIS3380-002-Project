@@ -7,7 +7,7 @@ export const ALLproducts = [
     price: 27.19,
     stock: 50,
     description: "MATERIAL AND ACCESSORIES: Equipped with the polyester outer shell, 8.5mm glass fiber bracket,150D Oxford cloth PU2000 in internal proof,150D Oxford cloth PU3000 in base fabric,4 windproof rope, 8 iron ground stakes.DURABLE & STABLE DESIGN: Aluminum poles, iron ground stakes, and windproof rope guarantee the tent sturdy and difficult to deform even on windy or rainy days.",
-    img_src: "../images/coleman-tent-300.jpg",
+    img_src: "../images/1/5165ExIMrsL._AC_SL1500_.jpg",
     id: "item-1",
   },
   {
@@ -18,7 +18,7 @@ export const ALLproducts = [
     price: 54.59,
     stock: 0,
     description: "Dome tent with a sturdy frame that withstands 35+ mph winds,Easy setup in only 10 minutes. Good for backpacking",
-    img_src: "../images/coleman-tent-300.jpg",
+    img_src: "../images/2/71HmL4kzLrL._AC_SL1500_.jpg",
     id: "item-2",
   },
   {
@@ -29,7 +29,7 @@ export const ALLproducts = [
     price: 499.95,
     stock: 50,
     description: "3-pole cabin-style tent provides generous living space; near-vertical walls provide standing room and are ideal when camping with air mattresses or cots,Freestanding, combination steel/fiberglass frame with quick clips, pole sleeves and corner hubs makes setup easy, even for 1 person",
-    img_src: "../images/coleman-tent-300.jpg",
+    img_src: "../images/7/7bf3ef22-4aef-4002-9d13-1fce956ff52e.jpg",
     id: "item-3",
   },
   {
@@ -40,7 +40,7 @@ export const ALLproducts = [
     price: 186.73,
     stock: 50,
     description: "this is a description",
-    img_src: "../images/coleman-tent-300.jpg",
+    img_src: "../images/8/938ef9e1-5992-473b-833f-e7981b1ea953.jpg",
     id: "item-4",
   },
   {
@@ -51,7 +51,7 @@ export const ALLproducts = [
     price: 23.99,
     stock: 50,
     description: "3 Season Warm & Cool Weather - Summer Spring Fall Lightweight Waterproof for Adults Kids - Camping Gear Equipment, Traveling",
-    img_src: "../images/coleman-tent-300.jpg",
+    img_src: "../images/3/51QTeGQjOuL._AC_SL1100_.jpg",
     id: "item-5",
   },
   {
@@ -62,7 +62,7 @@ export const ALLproducts = [
     price: 1430,
     stock: 50,
     description: "sleeping bags are designed to provide much needed rest after a full day of outdoor activities.",
-    img_src: "../images/coleman-tent-300.jpg",
+    img_src: "../images/4/61Jd2jL5o9L._AC_SL1500_.jpg",
     id: "item-6",
   },
   {
@@ -73,7 +73,7 @@ export const ALLproducts = [
     price: 20.99,
     stock: 50,
     description: "Safety material Outdoor Cookware:This camping cooker is made of food grade aluminum alloy, with food safety certification, non-toxic, fast heat conduction, wear",
-    img_src: "../images/coleman-tent-300.jpg",
+    img_src: "../images/5/71oKYxoJVZL._AC_SL1500_.jpg",
     id: "item-7",
   },
   {
@@ -84,7 +84,7 @@ export const ALLproducts = [
     price: 726,
     stock: 50,
     description: "This camping cookware mess kit is very convenient for camping, hiking, backpacking, and other outdoor occasions.",
-    img_src: "../images/coleman-tent-300.jpg",
+    img_src: "../images/6/51GCmH+yo7L._AC_SL1024_.jpg",
     id: "item-8",
   },
   {
@@ -95,7 +95,7 @@ export const ALLproducts = [
     price: 39.95,
     stock: 50,
     description: "Compact stainless-steel blades are rockered for kitchen prep and other camp use",
-    img_src: "../images/coleman-tent-300.jpg",
+    img_src: "../images/10/499cbe6a-16c1-4787-a3a2-b8634d93f4ac.jpg",
     id: "item-9",
   },
   {
@@ -106,7 +106,7 @@ export const ALLproducts = [
     price: 75,
     stock: 50,
     description: "This clever, complete, efficient cookset is made for 4 people to be able to cook like chefs and eat outside! Durable stainless steel with aluminum double bottom for efficient heating. Non-stick coating for easier cooking and cleaning. Complete and compact for 4 people",
-    img_src: "../images/coleman-tent-300.jpg",
+    img_src: "../images/11/4-person-stainless-non-stick-cooking-set-mh-500.avif",
     id: "item-10",
   },
   {
