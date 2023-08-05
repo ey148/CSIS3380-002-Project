@@ -24,7 +24,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 10%;
+  padding: 0px 1.5%;
 }
 
 
@@ -166,7 +166,10 @@ footer {
 }
 
 .detailImg {
-  width: 310px; /* Set the desired width */
-  height: 220px; /* Set the desired height */
-  object-fit: contain; /* This property ensures the image retains its aspect ratio and covers the entire box */
+  width: 310px;
+  /* Set the desired width */
+  height: 220px;
+  /* Set the desired height */
+  object-fit: contain;
+  /* This property ensures the image retains its aspect ratio and covers the entire box */
 }
