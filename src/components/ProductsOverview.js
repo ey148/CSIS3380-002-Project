@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ALLproducts } from '../../src/data/products';
+import axios from 'axios'; // Import axios
 import ProductBox from './ProductBox';
 
 const ProductsOverview = () => {
@@ -9,35 +9,27 @@ const ProductsOverview = () => {
   let navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
 
-  const searchParams = new URLSearchParams(location.search);
-  const selectedCategory = searchParams.get('category') || ''; // Extract the selected category from URL parameters
+  const [products, setProducts] = useState([]); // State to store fetched products
 
-  // Filter products based on search query and selected category
-  const filteredProducts = ALLproducts.filter((product) => {
-    const titleMatches = product.title.toLowerCase().includes(searchQuery.toLowerCase());
-    const categoryMatches = selectedCategory ? product.category === selectedCategory : true;
-    return titleMatches && categoryMatches;
-  });
+  const searchParams = new URLSearchParams(location.search);
+  const selectedCategory = searchParams.get('category') || '';
+
+  useEffect(() => {
+    // Fetch products from the server using axios
+    axios.get('http://localhost:5000/product/')
+      .then(response => {
+        setProducts(response.data); // Set the fetched products to the state
+      })
+      .catch(error => {
+        console.error('Error fetching products:', error);
+      });
+  }, []); // Empty dependency array to fetch products only once
 
   const handleProductClick = (productId) => {
     console.log(productId);
     navigate(`/product/${productId}`, { state: { productId: productId } });
   };
-
-  const products = filteredProducts.map((product) => (
-    <ProductBox
-      productData={product}
-      title={product.title}
-      brand={product.brand}
-      price={product.price}
-      desc={product.description}
-      img={product.img_src}
-      productId={product.id}
-      selectedProduct={handleProductClick}
-      key={product.id.toString()}
-    />
-  ));
-
+ 
   const handleSearch = () => {
     const inputName = document.getElementById('inputName');
     setSearchQuery(inputName.value);
@@ -46,6 +38,12 @@ const ProductsOverview = () => {
   const handleCategoryClick = (category) => {
     navigate(`/products?category=${category}`);
   };
+
+  const filteredProducts = products.filter((product) => {
+    const titleMatches = product.title.toLowerCase().includes(searchQuery.toLowerCase());
+    const categoryMatches = selectedCategory ? product.category === selectedCategory : true;
+    return titleMatches && categoryMatches;
+  });
 
   return (
     <div className="main-content">
@@ -69,7 +67,19 @@ const ProductsOverview = () => {
       </div>
 
       <ul className="container">
-        {products}
+        {filteredProducts.map((product) => (
+          <ProductBox
+            productData={product}
+            title={product.title}
+            brand={product.brand}
+            price={product.price}
+            desc={product.description}
+            img={product.img_src}
+            productId={product.productId}
+            selectedProduct={handleProductClick}
+            key={product.id}
+          />
+        ))}
       </ul>
 
       <p>PAGE NAV BAR TO ADD</p>

@@ -8,6 +8,10 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post(async (req, res) => {
+
+    console.log("body:", JSON.stringify(req.body));
+
+    //const productId = req.body.key;
     const productId = req.body.productId;
     const productTitle = req.body.productTitle;
     const quantity = parseInt(req.body.quantity);
