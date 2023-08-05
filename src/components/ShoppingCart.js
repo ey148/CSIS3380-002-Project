@@ -4,13 +4,14 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 // import 'bootstrap/dist/css/bootstrap.min.css'; //will change overall layout if added
 
 const ShoppingCart = () => {
-    
+
     const [itemList, setItemList] = useState([])
     const [totalQuantity, setTotalQuantity] = useState(0)
     const [totalPrice, setTotalPrice] = useState(0)
     const [selectedItem, setSelectedItem] = useState([]);
     const [updatedItem, setUpdatedItem] = useState("");
     const [newOrder, setNewOrder] = useState("");
+    const [orderDate, setOrderDate] = useState('');
 
     useEffect(() => {
         axios
@@ -21,22 +22,29 @@ const ShoppingCart = () => {
             .catch((error) => {
                 console.log(error)
             })
-        
+
         setTotalQuantity(itemList.reduce((total, item) => total + item.quantity, 0));
         setTotalPrice(itemList.reduce((total, item) => total + item.priceSubTotal, 0).toFixed(2));
-    }, [itemList]) 
+    }, [itemList])
+
+    useEffect(() => {
+        // Get the current date and format it as 'MM/DD/YYYY'
+        const today = new Date();
+        const formattedDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
+        setOrderDate(formattedDate);
+    }, []);
 
     // useEffect(() => {
     //     console.log(selectedItem);
     // }, [selectedItem])
-    
+
     useEffect(() => {
 
-        if (updatedItem){
+        if (updatedItem) {
             console.log("updated item below:");
             console.log(updatedItem);
-    
-            axios  
+
+            axios
                 .post(`http://localhost:5000/cart/update/${updatedItem._id}`, updatedItem)
                 .then((response) => {
                     console.log("cartItems edit updated");
@@ -48,7 +56,7 @@ const ShoppingCart = () => {
         }
 
     }, [updatedItem]);
-    
+
     const handleEdit = (event, _id) => {
         event.preventDefault();
 
@@ -97,7 +105,7 @@ const ShoppingCart = () => {
 
     const postToOrderList = async (event) => {
         event.preventDefault();
-        
+
         setNewOrder(
             {
                 items: itemList,
@@ -107,42 +115,44 @@ const ShoppingCart = () => {
         )
 
         //post cartItems to order
-        await axios 
+        await axios
             .post(`http://localhost:5000/order/add`, newOrder)
             .then((response) => {
                 console.log(response.config.data);
                 console.log("newOrder added!");
                 alert("Your order has been confirmed!");
+                clearCart();
             })
             .catch((error) => {
                 console.log(error)
             })
 
-        //clear cart (will run before post request)
-        // await axios
-        //     .delete(`http://localhost:5000/cart/clear`)
-        //     .then((response) => {
-        //         window.location = '/cart';
-        //     })
-        //     .catch((error) => {
-        //         console.log(error)
-        //     })
     }
 
-    return ( 
-        <div>
+    const clearCart = () => {
+        try {
+            axios.delete(`http://localhost:5000/cart/clear`);
+            console.log("Cart cleared successfully.");
+        } catch (error) {
+            console.log("Error clearing cart:", error);
+        }
+    };
+
+    return (
+        <div className="main-content">
             <h2>Shopping Cart</h2>
-            {totalQuantity===0 ?
+            {totalQuantity === 0 ?
                 <h4>Your cart is empty</h4>
                 :
                 <div>
                     <h4>Total order: {totalQuantity} items</h4>
+                    <h4>Order Date:{orderDate}</h4>
                     <table>
                         <thead>
                             <tr>
-                            <th>Item</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
+                                <th>Item</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -151,11 +161,11 @@ const ShoppingCart = () => {
                                     <tr key={item.productId}>
                                         <td>{item.productTitle}</td>
                                         <td>
-                                            <input id="newQty" type="number" placeholder={item.quantity} min="1"/>
+                                            <input id="newQty" type="number" placeholder={item.quantity} min="1" />
                                         </td>
                                         <td>${item.priceSubTotal}</td>
                                         <td>
-                                            <button onClick={(event) => changeQuantity(event,item._id)} style={{ border: 'none', backgroundColor: 'transparent', color: 'lightgray' }}>
+                                            <button onClick={(event) => changeQuantity(event, item._id)} style={{ border: 'none', backgroundColor: 'transparent', color: 'lightgray' }}>
                                                 <i className="bi bi-cart-check"></i>
                                             </button>
                                         </td>
@@ -166,10 +176,10 @@ const ShoppingCart = () => {
                                         <td>{item.quantity}</td>
                                         <td>${item.priceSubTotal}</td>
                                         <td>
-                                            <button onClick={(event) => handleEdit(event,item._id)} style={{ border: 'none', backgroundColor: 'transparent', color: 'lightgray' }}>
+                                            <button onClick={(event) => handleEdit(event, item._id)} style={{ border: 'none', backgroundColor: 'transparent', color: 'lightgray' }}>
                                                 <i className="bi bi-pen"></i>
                                             </button>
-                                            <button onClick={(event) => handleDelete(event,item._id)} style={{ border: 'none', backgroundColor: 'transparent', color: 'lightgray'}}>
+                                            <button onClick={(event) => handleDelete(event, item._id)} style={{ border: 'none', backgroundColor: 'transparent', color: 'lightgray' }}>
                                                 <i className="bi bi-trash"></i>
                                             </button>
                                         </td>
@@ -185,7 +195,7 @@ const ShoppingCart = () => {
                     <button onClick={(event) => postToOrderList(event)}>Confirm Order</button>
                 </div>
             }
-            
+
         </div>
     )
 };
