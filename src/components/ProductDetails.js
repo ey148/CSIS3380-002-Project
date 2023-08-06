@@ -6,7 +6,7 @@ import PlaceOrder from '../components/PlaceOrder';
 const ProductDetails = () => {
   const location = useLocation();
   const [productData, setProductData] = useState(null); // State to store product data
-  const [ratings, setRatings] = useState([]); // State to store fetched products
+  const [ratings, setRatings] = useState([]); // State to store product rating
   const [stars, setStars] = useState([]); // State to store calculated stars
 
   let productId = location.state.productId;
@@ -47,9 +47,10 @@ const ProductDetails = () => {
       };
 
       // Calculate the number of full stars to display (rounded down)
-      const fullStars = Math.floor(getProductRating(productId) / 20);
+      const rating = getProductRating(productId);
+      const fullStars = Math.floor(rating / 20);
       // Calculate the remaining decimal part to display a half star if needed
-      const hasHalfStar = getProductRating(productId) / 20 - fullStars >= 0.5;
+      const hasHalfStar = rating / 20 - fullStars >= 0.5;
       // Calculate the number of empty stars to display (5 - fullStars - hasHalfStar)
       const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
