@@ -81,7 +81,7 @@ const ProductDetails = () => {
             <h4>{productData.model}</h4>
             <p className="desc">{productData.description}</p>
             <h4>CAD {productData.price}</h4>
-            <p>{stars}</p>
+            <p>Ratings:{stars}</p>
             {isStock ?
               <PlaceOrder
                 // productId={productData.id}
