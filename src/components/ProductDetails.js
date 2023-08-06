@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios'; // Import axios
-import PlaceOrder from '../components/PlaceOrder';
+import PlaceOrder from './PlaceOrder';
 
 const ProductDetails = () => {
   const location = useLocation();
@@ -48,9 +48,9 @@ const ProductDetails = () => {
 
       // Calculate the number of full stars to display (rounded down)
       const rating = getProductRating(productId);
-      const fullStars = Math.floor(rating / 20);
+      const fullStars = Math.floor(rating);
       // Calculate the remaining decimal part to display a half star if needed
-      const hasHalfStar = rating / 20 - fullStars >= 0.5;
+      const hasHalfStar = rating - fullStars >= 0.5;
       // Calculate the number of empty stars to display (5 - fullStars - hasHalfStar)
       const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 

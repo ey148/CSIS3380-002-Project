@@ -46,7 +46,7 @@ const PlaceOrder = (props) => {
             <form>
                 <label htmlFor="Quantity">Select quantity: </label>
                 {/* <input type="text" id="quantity" name="quantity" value={quantity} onChange={handleChange}/> */}
-                <input type="number" id="quantity" name="quantity" placeholder={quantity} min="1" onChange={handleChange}/>
+                <input type="number" id="quantity" name="quantity" placeholder={quantity} min="1" onChange={handleChange} className="shorterInput"/>
             </form><br/>
             <button onClick={(event) => handleOrderClick(event, props.productId, props.productTitle, props.price, quantity)}>Add to Shopping Cart</button>
         </div>

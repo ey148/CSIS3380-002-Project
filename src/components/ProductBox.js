@@ -27,13 +27,7 @@ const ProductBox = (props) => {
           <li>CAD {props.price}</li>
           <li>
             Input Rating Score:
-            <input
-              type="text"
-              id="inputRating"
-              size="5"
-              value={inputRating}
-              onChange={handleInputRatingChange}
-            />
+            <input type="number" id="inputRating" name="inputRating" placeholder={inputRating} min="1" max="5" onChange={handleInputRatingChange} className="shorterInput"/>
             <input type="button" id="BtnInputRating" value="Submit" onClick={handleSubmitRating} />
           </li>
           <li>Average Ratings: {props.rating}</li>
@@ -44,5 +38,6 @@ const ProductBox = (props) => {
     </div>
   );
 };
+
 
 export default ProductBox;

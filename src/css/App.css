@@ -173,3 +173,7 @@ footer {
   object-fit: contain;
   /* This property ensures the image retains its aspect ratio and covers the entire box */
 }
+
+.shorterInput {
+  width: 56px;
+}
