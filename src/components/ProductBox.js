@@ -39,7 +39,7 @@ const ProductBox = (props) => {
           </li>
           <li>Average Ratings: {props.rating}</li>
           <li>No of Ratings: {props.countRating}</li>
-          <h4 onClick={() => props.selectedProduct(props.productData._id)}>show product details</h4>
+          <h4 onClick={() => props.selectedProduct(props.productData._id)}><u>View product details</u></h4>
         </ul>
       </div>
     </div>

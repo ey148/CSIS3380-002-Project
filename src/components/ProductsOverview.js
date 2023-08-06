@@ -56,43 +56,43 @@ const ProductsOverview = () => {
   };
 
   const updateRating = (productId, newRating, newCountRating) => {
-  const ratingToUpdate = ratings.find((ratingObj) => ratingObj.productId === productId);
+    const ratingToUpdate = ratings.find((ratingObj) => ratingObj.productId === productId);
 
-  if (ratingToUpdate) {
-    // Update the rating and countRating in the state
-    setRatings((prevRatings) =>
-      prevRatings.map((ratingObj) =>
-        ratingObj.productId === productId
-          ? { ...ratingObj, rating: newRating, countRating: newCountRating }
-          : ratingObj
-      )
-    );
+    if (ratingToUpdate) {
+      // Update the rating and countRating in the state
+      setRatings((prevRatings) =>
+        prevRatings.map((ratingObj) =>
+          ratingObj.productId === productId
+            ? { ...ratingObj, rating: newRating, countRating: newCountRating }
+            : ratingObj
+        )
+      );
 
-    // Also update the rating and countRating of the product in the products state
-    setProducts((prevProducts) =>
-      prevProducts.map((product) =>
-        product.productId === productId
-          ? { ...product, rating: newRating, countRating: newCountRating }
-          : product
-      )
-    );
-  } else {
-    // If the rating is not found in the state, add it to the state
-    setRatings((prevRatings) => [
-      ...prevRatings,
-      { productId: productId, rating: newRating, countRating: newCountRating },
-    ]);
+      // Also update the rating and countRating of the product in the products state
+      setProducts((prevProducts) =>
+        prevProducts.map((product) =>
+          product.productId === productId
+            ? { ...product, rating: newRating, countRating: newCountRating }
+            : product
+        )
+      );
+    } else {
+      // If the rating is not found in the state, add it to the state
+      setRatings((prevRatings) => [
+        ...prevRatings,
+        { productId: productId, rating: newRating, countRating: newCountRating },
+      ]);
 
-    // Also add the rating and countRating to the corresponding product in the products state
-    setProducts((prevProducts) =>
-      prevProducts.map((product) =>
-        product.productId === productId
-          ? { ...product, rating: newRating, countRating: newCountRating }
-          : product
-      )
-    );
-  }
-};
+      // Also add the rating and countRating to the corresponding product in the products state
+      setProducts((prevProducts) =>
+        prevProducts.map((product) =>
+          product.productId === productId
+            ? { ...product, rating: newRating, countRating: newCountRating }
+            : product
+        )
+      );
+    }
+  };
 
   const handleProductClick = (productId) => {
     console.log(productId);
@@ -123,14 +123,15 @@ const ProductsOverview = () => {
           <input type="button" value="Search" id="searchBtn" onClick={handleSearch} />
         </h4>
         <ul className="product-nav">
+          <li><h3>Filter by category:</h3></li>
           <li className={selectedCategory === 'Tent' ? 'active' : ''} onClick={() => handleCategoryClick('Tent')}>
-            Tents
+            <h3><u>Tents</u></h3>
           </li>
           <li className={selectedCategory === 'Cooking Utensils' ? 'active' : ''} onClick={() => handleCategoryClick('Cooking Utensils')}>
-            Cooking Utensils
+            <h3><u>Cooking Utensils</u></h3>
           </li>
           <li className={selectedCategory === 'Sleeping bags' ? 'active' : ''} onClick={() => handleCategoryClick('Sleeping bags')}>
-            Sleeping bags
+            <h3><u>Sleeping bags</u></h3>
           </li>
         </ul>
 
