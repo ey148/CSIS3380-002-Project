@@ -5,6 +5,7 @@ const ProductBox = (props) => {
 
   const handleInputRatingChange = (event) => {
     setInputRating(event.target.value);
+    
   };
 
   const handleSubmitRating = () => {
@@ -26,12 +27,18 @@ const ProductBox = (props) => {
           <li>{props.brand}</li>
           <li>CAD {props.price}</li>
           <li>
-            Input Rating Score:
-            <input type="number" id="inputRating" name="inputRating" placeholder={inputRating} min="1" max="5" onChange={handleInputRatingChange} className="shorterInput"/>
+            Rate this product(1-5):
+            <input
+              type="text"
+              id="inputRating"
+              size="1"
+              value={inputRating}
+              onChange={handleInputRatingChange}
+            />
             <input type="button" id="BtnInputRating" value="Submit" onClick={handleSubmitRating} />
           </li>
           <li>Average Ratings: {props.rating}</li>
-          <li>Rating Scores inputted: {props.countRating}</li>
+          <li>No of Ratings: {props.countRating}</li>
           <h4 onClick={() => props.selectedProduct(props.productData._id)}>show product details</h4>
         </ul>
       </div>

@@ -28,7 +28,7 @@ const ProductDetails = () => {
       })
       .catch(error => {
         console.error('Error fetching ratings:', error);
-      });    
+      });
   }, [productId]);
 
   useEffect(() => {
@@ -48,22 +48,12 @@ const ProductDetails = () => {
 
       // Calculate the number of full stars to display (rounded down)
       const rating = getProductRating(productId);
-      const fullStars = Math.floor(rating);
-      // Calculate the remaining decimal part to display a half star if needed
-      const hasHalfStar = rating - fullStars >= 0.5;
-      // Calculate the number of empty stars to display (5 - fullStars - hasHalfStar)
-      const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+      const fullStars = rating; // Each rating corresponds to the number of full stars
 
       // Create an array of JSX elements to render the stars
       const stars = [];
       for (let i = 0; i < fullStars; i++) {
         stars.push(<span key={i} className="bi bi-star-fill" style={{ fontSize: '20px', color: 'rgb(243, 156, 18)' }} />);
-      }
-      if (hasHalfStar) {
-        stars.push(<span key="half" className="bi bi-star-half" style={{ fontSize: '20px', color: 'rgb(243, 156, 18)' }} />);
-      }
-      for (let i = 0; i < emptyStars; i++) {
-        stars.push(<span key={`empty${i}`} className="bi bi-star" style={{ fontSize: '20px', color: 'rgb(243, 156, 18)' }} />);
       }
 
       // Set the calculated stars to the state
