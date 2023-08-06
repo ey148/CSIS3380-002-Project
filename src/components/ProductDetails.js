@@ -6,6 +6,8 @@ import PlaceOrder from '../components/PlaceOrder';
 const ProductDetails = () => {
   const location = useLocation();
   const [productData, setProductData] = useState(null); // State to store product data
+  const [ratings, setRatings] = useState([]); // State to store fetched products
+  const [stars, setStars] = useState([]); // State to store calculated stars
 
   let productId = location.state.productId;
 
@@ -18,7 +20,55 @@ const ProductDetails = () => {
       .catch(error => {
         console.error('Error fetching product details:', error);
       });
+
+    axios
+      .get('http://localhost:5000/rating/')
+      .then(response => {
+        setRatings(response.data); // Set the fetched products to the state
+      })
+      .catch(error => {
+        console.error('Error fetching ratings:', error);
+      });    
   }, [productId]);
+
+  useEffect(() => {
+    // Calculate the stars based on the fetched ratings
+    if (productData && ratings.length > 0) {
+      const productId = productData.productId;
+      const getProductRating = (productId) => {
+        let rating = null;
+        for (const ratingObj of ratings) {
+          if (ratingObj.productId === productId) {
+            rating = ratingObj.rating;
+            break;
+          }
+        }
+        return rating ? rating : 0;
+      };
+
+      // Calculate the number of full stars to display (rounded down)
+      const fullStars = Math.floor(getProductRating(productId) / 20);
+      // Calculate the remaining decimal part to display a half star if needed
+      const hasHalfStar = getProductRating(productId) / 20 - fullStars >= 0.5;
+      // Calculate the number of empty stars to display (5 - fullStars - hasHalfStar)
+      const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+      // Create an array of JSX elements to render the stars
+      const stars = [];
+      for (let i = 0; i < fullStars; i++) {
+        stars.push(<span key={i} className="bi bi-star-fill" style={{ fontSize: '20px', color: 'rgb(243, 156, 18)' }} />);
+      }
+      if (hasHalfStar) {
+        stars.push(<span key="half" className="bi bi-star-half" style={{ fontSize: '20px', color: 'rgb(243, 156, 18)' }} />);
+      }
+      for (let i = 0; i < emptyStars; i++) {
+        stars.push(<span key={`empty${i}`} className="bi bi-star" style={{ fontSize: '20px', color: 'rgb(243, 156, 18)' }} />);
+      }
+
+      // Set the calculated stars to the state
+      setStars(stars);
+    }
+  }, [productData, ratings]);
 
   if (!productData) {
     return <div>Loading...</div>; // Render a loading message while data is being fetched
@@ -40,7 +90,7 @@ const ProductDetails = () => {
             <h4>{productData.model}</h4>
             <p className="desc">{productData.description}</p>
             <h4>CAD {productData.price}</h4>
-            <p>Rating: [to show] </p>
+            <p>{stars}</p>
             {isStock ?
               <PlaceOrder
                 // productId={productData.id}
