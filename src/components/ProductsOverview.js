@@ -5,12 +5,10 @@ import ProductBox from './ProductBox';
 
 const ProductsOverview = () => {
   const location = useLocation();
-
   let navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-
   const [products, setProducts] = useState([]); // State to store fetched products
-
+  const [ratings, setRatings] = useState([]); // State to store fetched products
   const searchParams = new URLSearchParams(location.search);
   const selectedCategory = searchParams.get('category') || '';
 
@@ -23,13 +21,34 @@ const ProductsOverview = () => {
       .catch(error => {
         console.error('Error fetching products:', error);
       });
+
+    axios
+      .get('http://localhost:5000/rating/')
+      .then(response => {
+        setRatings(response.data); // Set the fetched products to the state
+
+      })
+      .catch(error => {
+        console.error('Error fetching ratings:', error);
+      });
   }, []); // Empty dependency array to fetch products only once
+
+  const getProductRating = (productId) => {
+    let rating = null;
+    for (const ratingObj of ratings) {
+      if (ratingObj.productId === productId) {
+        rating = ratingObj.rating;
+        break;
+      }
+    }
+    return rating? rating: 0;
+  };
 
   const handleProductClick = (productId) => {
     console.log(productId);
     navigate(`/product/${productId}`, { state: { productId: productId } });
   };
- 
+
   const handleSearch = () => {
     const inputName = document.getElementById('inputName');
     setSearchQuery(inputName.value);
@@ -64,6 +83,9 @@ const ProductsOverview = () => {
             Sleeping bags
           </li>
         </ul>
+
+
+
       </div>
 
       <ul className="container">
@@ -77,6 +99,7 @@ const ProductsOverview = () => {
             img={product.img_src}
             productId={product.productId}
             selectedProduct={handleProductClick}
+            rating={getProductRating(product.productId)}
             key={product.id}
           />
         ))}

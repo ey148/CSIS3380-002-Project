@@ -10,7 +10,7 @@ const ProductBox = (props) => {
                 <ul>
                     <li>{props.brand}</li>
                     <li>CAD {props.price}</li>
-                    <li>ratings to show</li>
+                    <li>Ratings {props.rating}</li>
                 </ul>  
             </div>
         </div>
