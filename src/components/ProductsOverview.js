@@ -41,8 +41,58 @@ const ProductsOverview = () => {
         break;
       }
     }
-    return rating? rating: 0;
+    return rating ? rating : 0;
   };
+
+  const getCountRating = (productId) => {
+    let countRating = null;
+    for (const ratingObj of ratings) {
+      if (ratingObj.productId === productId) {
+        countRating = ratingObj.countRating;
+        break;
+      }
+    }
+    return countRating ? countRating : 0;
+  };
+
+  const updateRating = (productId, newRating, newCountRating) => {
+  const ratingToUpdate = ratings.find((ratingObj) => ratingObj.productId === productId);
+
+  if (ratingToUpdate) {
+    // Update the rating and countRating in the state
+    setRatings((prevRatings) =>
+      prevRatings.map((ratingObj) =>
+        ratingObj.productId === productId
+          ? { ...ratingObj, rating: newRating, countRating: newCountRating }
+          : ratingObj
+      )
+    );
+
+    // Also update the rating and countRating of the product in the products state
+    setProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product.productId === productId
+          ? { ...product, rating: newRating, countRating: newCountRating }
+          : product
+      )
+    );
+  } else {
+    // If the rating is not found in the state, add it to the state
+    setRatings((prevRatings) => [
+      ...prevRatings,
+      { productId: productId, rating: newRating, countRating: newCountRating },
+    ]);
+
+    // Also add the rating and countRating to the corresponding product in the products state
+    setProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product.productId === productId
+          ? { ...product, rating: newRating, countRating: newCountRating }
+          : product
+      )
+    );
+  }
+};
 
   const handleProductClick = (productId) => {
     console.log(productId);
@@ -100,12 +150,13 @@ const ProductsOverview = () => {
             productId={product.productId}
             selectedProduct={handleProductClick}
             rating={getProductRating(product.productId)}
+            countRating={getCountRating(product.productId)}
+            updateRating={updateRating}
             key={product.id}
+
           />
         ))}
       </ul>
-
-      <p>PAGE NAV BAR TO ADD</p>
     </div>
   );
 };
