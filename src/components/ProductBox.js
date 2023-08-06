@@ -26,8 +26,9 @@ const ProductBox = (props) => {
         <ul>
           <li>{props.brand}</li>
           <li>CAD {props.price}</li>
+          <li>Rating: {props.rating} star(s)({props.countRating} review(s))</li>
           <li>
-            Rate this product(1-5):
+            Your Rating(1-5):
             <input
               type="text"
               id="inputRating"
@@ -35,10 +36,9 @@ const ProductBox = (props) => {
               value={inputRating}
               onChange={handleInputRatingChange}
             />
-            <input type="button" id="BtnInputRating" value="Submit" onClick={handleSubmitRating} />
+            <input type="button" id="BtnInputRating" value="Done" onClick={handleSubmitRating} />
           </li>
-          <li>Average Ratings: {props.rating}</li>
-          <li>No of Ratings: {props.countRating}</li>
+          
           <h4 onClick={() => props.selectedProduct(props.productData._id)}><u>View product details</u></h4>
         </ul>
       </div>
