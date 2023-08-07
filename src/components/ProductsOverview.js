@@ -33,28 +33,40 @@ const ProductsOverview = () => {
       });
   }, []); // Empty dependency array to fetch products only once
 
-  const getProductRating = (productId) => {
-    let rating = null;
-    for (const ratingObj of ratings) {
-      if (ratingObj.productId === productId) {
-        rating = ratingObj.rating;
-        break;
-      }
+  
+  const calculateAverageRating = (productId) => {
+    if (!ratings || ratings.length === 0) {
+      return 0;
     }
-    return rating ? rating : 0;
+
+    const productRatings = ratings.filter(
+      (ratingObj) => ratingObj.productId === productId
+    );
+      
+    if (productRatings.length === 0) {
+      return 0;
+    }
+      
+    const totalRating = productRatings.reduce((acc, curr) => acc + curr.rating, 0);
+    const averageRating = totalRating / productRatings.length;
+    return averageRating;
   };
 
-  const getCountRating = (productId) => {
-    let countRating = null;
-    for (const ratingObj of ratings) {
-      if (ratingObj.productId === productId) {
-        countRating = ratingObj.countRating;
-        break;
-      }
+  const calculateCountRating = (productId) => {
+    if (!ratings || ratings.length === 0) {
+      return 0;
     }
-    return countRating ? countRating : 0;
-  };
 
+    const productRatings = ratings.filter(
+      (ratingObj) => ratingObj.productId === productId
+    );
+      
+    if (productRatings.length === 0) {
+      return 0;
+    }
+    return productRatings.length;
+  };
+  
   const updateRating = (productId, newRating, newCountRating) => {
     const ratingToUpdate = ratings.find((ratingObj) => ratingObj.productId === productId);
 
@@ -150,8 +162,8 @@ const ProductsOverview = () => {
             img={product.img_src}
             productId={product.productId}
             selectedProduct={handleProductClick}
-            rating={getProductRating(product.productId)}
-            countRating={getCountRating(product.productId)}
+            rating={calculateAverageRating(product.productId)}
+            countRating={calculateCountRating(product.productId)}
             updateRating={updateRating}
             key={product.id}
 

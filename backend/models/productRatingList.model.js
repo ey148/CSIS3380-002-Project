@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 // Create a Schema object
 const RatingSchema = new Schema({
     productId: { type: String, required: true },
-    productRating: { type: Number, required: true },
+    rating: { type: Number, required: true },
     countRating: { type: Number, required: true }
 });
 

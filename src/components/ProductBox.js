@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-
 const ProductBox = (props) => {
-  const [inputRating, setInputRating] = useState('');
+  const renderStars = () => {
+    const rating = props.rating;
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating - fullStars >= 0.5;
+    const stars = [];
 
-  const handleInputRatingChange = (event) => {
-    setInputRating(event.target.value);
-    
-  };
-
-  const handleSubmitRating = () => {
-    if (inputRating !== '') {
-      const newCountRating = props.countRating + 1;
-      const newRating =
-        (props.rating * props.countRating + parseFloat(inputRating)) / newCountRating;
-      props.updateRating(props.productData.productId, newRating, newCountRating);
-      setInputRating('');
+    for (let i = 0; i < 5; i++) {
+      if (i < fullStars) {
+        stars.push(<span key={i} className="bi bi-star-fill" style={{ fontSize: '20px', color: 'rgb(255, 210, 48)' }} />);
+      } else if (i === fullStars && hasHalfStar) {
+        stars.push(<span key={i} className="bi bi-star-half" style={{ fontSize: '20px', color: 'rgb(255, 210, 48)' }} />);
+      } else {
+        stars.push(<span key={i} className="bi bi-star" style={{ fontSize: '20px', color: 'rgb(255, 210, 48)' }} />);
+      }
     }
+
+    return stars;
   };
 
   return (
@@ -24,20 +24,9 @@ const ProductBox = (props) => {
       <div>
         <h5>{props.title}</h5>
         <ul>
-          <li>{props.brand}</li>
-          <li>CAD {props.price}</li>
-          <li>Rating: {props.rating} star(s)({props.countRating} review(s))</li>
-          <li>
-            Your Rating(1-5):
-            <input
-              type="text"
-              id="inputRating"
-              size="1"
-              value={inputRating}
-              onChange={handleInputRatingChange}
-            />
-            <input type="button" id="BtnInputRating" value="Done" onClick={handleSubmitRating} />
-          </li>
+          <p>{props.brand}</p>
+          <p>CAD {props.price}</p>
+          <p>Rating: {renderStars()} ({props.countRating} review(s))</p>
           
           <h4 onClick={() => props.selectedProduct(props.productData._id)}><u>View product details</u></h4>
         </ul>

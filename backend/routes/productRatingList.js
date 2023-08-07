@@ -9,12 +9,12 @@ router.route('/').get((req, res) => {
 
 router.route('/add').post(async (req, res) => {
   const productId = req.body.productId;
-  const productRating = req.body.rating;
+  const rating = req.body.rating;
   const countRating = 1; // Initialize countRating to 1 when a new rating is added
 
   const newProductRating = new Rating({
     productId,
-    rating: productRating,
+    rating,
     countRating,
   });
 
