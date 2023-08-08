@@ -170,7 +170,7 @@ footer {
   /* Set the desired width */
   height: 220px;
   /* Set the desired height */
-  object-fit: contain;
+  object-fit: cover;
   /* This property ensures the image retains its aspect ratio and covers the entire box */
 }
 
