@@ -9,6 +9,7 @@ const ProductDetails = () => {
   const [ratings, setRatings] = useState([]); // State to store product rating
   const [stars, setStars] = useState([]); // State to store calculated stars
   const [inputRating, setInputRating] = useState('');
+  const [ratingSubmitted, setRatingSubmitted] = useState(false);
 
   //getting productId
   const productId = location.state?.productId;
@@ -33,6 +34,7 @@ const ProductDetails = () => {
           setRatings([...ratings, newRatingObj]);
           setInputRating(''); // Clear the inputRating after submission
           console.log('Input rating cleared:', inputRating); // Check the value of inputRating
+          setRatingSubmitted(true); // Set the ratingSubmitted state to true
         })
         .catch((error) => {
           console.error('Error inserting rating:', error);
@@ -146,12 +148,18 @@ const ProductDetails = () => {
             <h4>{productData.model}</h4>
             <p className="desc">{productData.description}</p>
             <h4>CAD {productData.price}</h4>
+
             <p>Rating: {stars}</p>
+
+            {ratingSubmitted ? (
+            <p>Thanks for your input!</p>
+            ) : (
             <p>
             <label>Your Rating(1-5): </label> 
             <input type="number" id="inputRating" name="inputRating" placeholder={inputRating} min="1" max="5" onChange={handleInputRatingChange} className="shorterInput" />
             <input type="button" id="BtnInputRating" value="Rate" onClick={handleSubmitRating} />
             </p>
+            )}
 
             {isStock ? (
               <PlaceOrder
