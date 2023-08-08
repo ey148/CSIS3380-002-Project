@@ -210,8 +210,8 @@ const ShoppingCart = () => {
                                     :
                                     <tr key={index+1}>
                                         <td>{item.productTitle}</td>
-                                        <td>{item.quantity}</td>
-                                        <td>${item.priceSubTotal}</td>
+                                        <td style={{ textAlign: 'center' }}>{item.quantity}</td>
+                                        <td style={{ textAlign: 'right' }}>${item.priceSubTotal}</td>
                                         <td>
                                             <button onClick={(event) => handleEdit(event, item._id)} style={{ border: 'none', backgroundColor: 'transparent', color: 'black' }}>
                                                 <i className="bi bi-pen"></i>
