@@ -1,10 +1,30 @@
 const router = require('express').Router();
 let Cart = require('../models/cartList.model');
 
-router.route('/').get((req, res) => {
-    Cart.find()
-        .then((cartItems) => res.json(cartItems))
-        .catch((err) => res.status(400).json('Error: ' + err));
+//full cart
+// router.route('/').get((req, res) => {
+//     Cart.find()
+//         .then((cartItems) => res.json(cartItems))
+//         .catch((err) => res.status(400).json('Error: ' + err));
+// });
+
+//cart filtered by user
+//router.route('/').get((req, res) => {
+//     Cart.find({ userId: req.params.userId })
+//         .then((cartItems) => res.json(cartItems))
+//         .catch((err) => res.status(400).json('Error: ' + err));
+// });
+
+router.route('/').get(async (req, res) => {
+    const userId = req.query.userId; // Get the userId from the query parameter
+
+    // Use the userId to fetch the cart items for that user
+    try {
+        const cartItems = await Cart.find({ userId: userId });
+        res.json(cartItems);
+    } catch (err) {
+        res.status(400).json('Error: ' + err);
+    }
 });
 
 router.route('/add').post(async (req, res) => {

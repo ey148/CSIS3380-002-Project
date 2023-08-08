@@ -165,7 +165,7 @@ const ProductsOverview = () => {
             rating={calculateAverageRating(product.productId)}
             countRating={calculateCountRating(product.productId)}
             updateRating={updateRating}
-            // key={product.id}
+            key={product._id}
           />
         ))}
       </ul>

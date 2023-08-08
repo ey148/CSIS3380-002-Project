@@ -14,22 +14,13 @@ const ShoppingCart = () => {
     const [cartUpdateCounter, setCartUpdateCounter] = useState(0);
     const [userId] = useState(localStorage.getItem('userId'));
     
-    useEffect(() => {
-        //search full cart
-        axios
-            .get('http://localhost:5000/cart/')
-            .then((response) => {
-                setItemList(response.data)
-                setTotalQuantity(itemList.reduce((total, item) => total + item.quantity, 0));
-                setTotalPrice(parseFloat(itemList.reduce((total, item) => total + item.priceSubTotal, 0)));
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+    console.log(`userId= ${userId}`);
+
+    useEffect(() => {       
         
-        //search cart by user
+        // //search full cart
         // axios
-        //     .get(`http://localhost:5000/cart/user/${userId}`)
+        //     .get('http://localhost:5000/cart/')
         //     .then((response) => {
         //         setItemList(response.data)
         //         setTotalQuantity(itemList.reduce((total, item) => total + item.quantity, 0));
@@ -38,7 +29,29 @@ const ShoppingCart = () => {
         //     .catch((error) => {
         //         console.log(error)
         //     })
+        
+        //search cart by user
+        axios
+            .get(`http://localhost:5000/cart?userId=${userId}`)
+            .then((response) => {
+                setItemList(response.data);
+                //setTotalQuantity(itemList.reduce((total, item) => total + item.quantity, 0));
+                //setTotalPrice(itemList.reduce((total, item) => total + parseFloat(item.priceSubTotal), 0).toFixed(2));
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         // eslint-disable-next-line
+    }, [userId, cartUpdateCounter]);
+
+    useEffect(() => {
+        if (itemList.length > 0) {
+            const totalQty = itemList.reduce((total, item) => total + item.quantity, 0);
+            const totalPrice = itemList.reduce((total, item) => total + parseFloat(item.priceSubTotal), 0).toFixed(2);
+
+            setTotalQuantity(totalQty);
+            setTotalPrice(totalPrice);
+        }
     }, [itemList]);
 
     // useEffect(() => {
@@ -103,11 +116,13 @@ const ShoppingCart = () => {
         axios
             .delete(`http://localhost:5000/cart/delete/${_id}`)
             .then((response) => {
-                window.location = '/cart';
+                // window.location = '/cart';
+                setCartUpdateCounter(prevCounter => prevCounter + 1);
             })
             .catch((error) => {
                 console.log(error)
             })
+        
     }
 
     const postToOrderList = async (event) => {
@@ -139,9 +154,18 @@ const ShoppingCart = () => {
     }
 
     const clearCart = () => {
+        // try {
+        //     axios.delete(`http://localhost:5000/cart/clear`);
+        //     console.log("Cart cleared successfully.");
+        //     setTotalQuantity(0);
+        // } catch (error) {
+        //     console.log("Error clearing cart:", error);
+        // }
+
+        //clear for specific user
         try {
-            axios.delete(`http://localhost:5000/cart/clear`);
-            console.log("Cart cleared successfully.");
+            axios.delete(`http://localhost:5000/cart/clear/${userId}`);
+            console.log(`Cart cleared for user${userId} successfully.`);
             setTotalQuantity(0);
         } catch (error) {
             console.log("Error clearing cart:", error);
