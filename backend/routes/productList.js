@@ -42,12 +42,16 @@ router.route('/add').post(async (req, res) => {
         .catch((err) => res.status(400).json('Error: ' + err));
 });
 
-//getting specific item for edit
-router.route('/:id').get(async (req, res) => {
-    await Product.findById(req.params.id)
+//getting specific item for edit (using productId)
+router.route('/:productId').get(async (req, res) => {
+    const productId = req.params.productId;
+
+    console.log("productId=" + productId);
+
+    await Product.findOne({productId: productId})
         .then((item) => {
             res.json(item);
-            console.log('show selected item: ' + req.params.id);
+            console.log('show selected item: ' + req.params.productId);
         })
         .catch((err) => res.status(400).json('Error: ' + err));
 });

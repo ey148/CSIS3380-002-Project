@@ -18,8 +18,9 @@ const ProductBox = (props) => {
     return stars;
   };
 
+  //updated to props.productData._id
   return (
-    <div className="box">
+    <div className="box" onClick={() => props.selectedProduct(props.productData.productId)}> 
       <img className="detailImg" src={props.img} alt="product" />
       <div>
         <h5>{props.title}</h5>
@@ -28,7 +29,7 @@ const ProductBox = (props) => {
           <p>CAD {props.price}</p>
           <p>Rating: {renderStars()} ({props.countRating} review(s))</p>
           
-          <h4 onClick={() => props.selectedProduct(props.productData._id)}><u>View product details</u></h4>
+          <h4><u>View product details</u></h4>
         </ul>
       </div>
     </div>

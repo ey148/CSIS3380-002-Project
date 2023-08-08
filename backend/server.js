@@ -29,12 +29,14 @@ const cartRouter = require('./routes/cartList'); //link to routes folder
 const orderRouter = require('./routes/orderList');
 const productsRouter = require('./routes/productList');
 const ratingRouter = require('./routes/productRatingList');
+const userRouter = require('./routes/userList');
 
 //the API path to be called
 app.use('/cart', cartRouter);
 app.use('/order', orderRouter);
 app.use('/product', productsRouter);
 app.use('/rating', ratingRouter);
+app.use('/user', userRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

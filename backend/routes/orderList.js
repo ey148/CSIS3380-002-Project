@@ -11,12 +11,14 @@ router.route('/add').post(async (req, res) => {
     const items = req.body.items;
     const totalItems = req.body.totalItems;
     const grandTotal = req.body.grandTotal;
+    const userId = req.body.userId;
 
     // create a new Order object
     const newOrder = await new Order({
         items,
         totalItems,
         grandTotal,
+        userId
     });
 
     console.log(newOrder);
@@ -31,14 +33,16 @@ router.route('/add').post(async (req, res) => {
 });
 
 //get specific order
-// router.route('/:id').get(async (req, res) => {
+router.route('/:userId').get(async (req, res) => {
     
-//     await Cart.findById(req.params.id)
-//         .then((item) => {
-//             res.json(item);
-//             console.log('show selected item: ' + req.params.id);
-//         })
-//         .catch((err) => res.status(400).json('Error: ' + err));
-// });
+    const userId = req.params.userId;
+
+    await Order.findOne({ userId: userId })
+        .then((item) => {
+            res.json(item);
+            console.log('show selected item: ' + item);
+        })
+        .catch((err) => res.status(400).json('Error: ' + err));
+});
 
 module.exports = router;

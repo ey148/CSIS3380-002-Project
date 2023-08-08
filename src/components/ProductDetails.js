@@ -10,6 +10,7 @@ const ProductDetails = () => {
   const [stars, setStars] = useState([]); // State to store calculated stars
   const [inputRating, setInputRating] = useState('');
 
+  //getting productId
   const productId = location.state?.productId;
 
   const handleInputRatingChange = (event) => {

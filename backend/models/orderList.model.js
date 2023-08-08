@@ -16,10 +16,11 @@ const orderListSchema = new Schema({
     items: [cartItemSchema], 
     totalItems: { type: Number, required: true },
     grandTotal: { type: Number, required: true },
-    //orderDateTime: { type: Date, default: Date.now }
+    userId: { type: Number, required: true },
+    createdAt: { type: Date, default: Date.now }
 });
 
 // create CartListModel
-const orderListModel = mongoose.model("orderListModel", orderListSchema);
+const orderListModel = mongoose.model("order", orderListSchema);
 
 module.exports = orderListModel;

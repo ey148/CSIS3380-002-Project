@@ -10,33 +10,43 @@ const ShoppingCart = () => {
     const [totalPrice, setTotalPrice] = useState(0)
     const [selectedItem, setSelectedItem] = useState([]);
     const [updatedItem, setUpdatedItem] = useState("");
-    const [newOrder, setNewOrder] = useState("");
-    const [orderDate, setOrderDate] = useState('');
-
+    // const [orderDate, setOrderDate] = useState('');
+    const [cartUpdateCounter, setCartUpdateCounter] = useState(0);
+    const [userId] = useState(localStorage.getItem('userId'));
+    
     useEffect(() => {
+        //search full cart
         axios
             .get('http://localhost:5000/cart/')
             .then((response) => {
                 setItemList(response.data)
+                setTotalQuantity(itemList.reduce((total, item) => total + item.quantity, 0));
+                setTotalPrice(parseFloat(itemList.reduce((total, item) => total + item.priceSubTotal, 0)));
             })
             .catch((error) => {
                 console.log(error)
             })
-
-        setTotalQuantity(itemList.reduce((total, item) => total + item.quantity, 0));
-        setTotalPrice(itemList.reduce((total, item) => total + item.priceSubTotal, 0).toFixed(2));
-    }, [itemList])
-
-    useEffect(() => {
-        // Get the current date and format it as 'MM/DD/YYYY'
-        const today = new Date();
-        const formattedDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
-        setOrderDate(formattedDate);
+        
+        //search cart by user
+        // axios
+        //     .get(`http://localhost:5000/cart/user/${userId}`)
+        //     .then((response) => {
+        //         setItemList(response.data)
+        //         setTotalQuantity(itemList.reduce((total, item) => total + item.quantity, 0));
+        //         setTotalPrice(parseFloat(itemList.reduce((total, item) => total + item.priceSubTotal, 0)));
+        //     })
+        //     .catch((error) => {
+        //         console.log(error)
+        //     })
+        // eslint-disable-next-line
     }, []);
 
     // useEffect(() => {
-    //     console.log(selectedItem);
-    // }, [selectedItem])
+    //     // Get the current date and format it as 'MM/DD/YYYY'
+    //     const today = new Date();
+    //     const formattedDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
+    //     setOrderDate(formattedDate);
+    // }, []);
 
     useEffect(() => {
 
@@ -48,7 +58,7 @@ const ShoppingCart = () => {
                 .post(`http://localhost:5000/cart/update/${updatedItem._id}`, updatedItem)
                 .then((response) => {
                     console.log("cartItems edit updated");
-                    // window.location = '/cart'
+                    setCartUpdateCounter(prevCounter => prevCounter + 1);
                 })
                 .catch((error) => {
                     console.log(error)
@@ -64,6 +74,7 @@ const ShoppingCart = () => {
             .get(`http://localhost:5000/cart/${_id}`)
             .then((response) => {
                 setSelectedItem(response.data); //fetch the item
+                setCartUpdateCounter(prevCounter => prevCounter + 1);
             })
             .catch((error) => {
                 console.log(error)
@@ -78,10 +89,7 @@ const ShoppingCart = () => {
         setUpdatedItem(
             {
                 _id: selectedItem._id,
-                productId: selectedItem.productId,
-                productTitle: selectedItem.productTitle,
                 quantity: newQuantity,
-                price: selectedItem.price,
                 priceSubTotal: (selectedItem.price * newQuantity).toFixed(2)
             }
         )
@@ -100,19 +108,20 @@ const ShoppingCart = () => {
             .catch((error) => {
                 console.log(error)
             })
-
     }
 
     const postToOrderList = async (event) => {
         event.preventDefault();
 
-        setNewOrder(
-            {
+        const totalQty = itemList.reduce((total, item) => total + item.quantity, 0);
+        const totalPrice = itemList.reduce((total, item) => total + parseFloat(item.priceSubTotal), 0).toFixed(2);
+      
+        const newOrder = {
                 items: itemList,
-                totalItems: totalQuantity,
+                totalItems: totalQty,
                 grandTotal: totalPrice,
-            }
-        )
+                userId: userId,
+        };
 
         //post cartItems to order
         await axios
@@ -133,10 +142,14 @@ const ShoppingCart = () => {
         try {
             axios.delete(`http://localhost:5000/cart/clear`);
             console.log("Cart cleared successfully.");
+            setTotalQuantity(0);
         } catch (error) {
             console.log("Error clearing cart:", error);
         }
     };
+
+    //clear by userId
+
 
     return (
         <div className="main-content">
@@ -146,7 +159,7 @@ const ShoppingCart = () => {
                 :
                 <div>
                     <h4>Total order: {totalQuantity} items</h4>
-                    <h4>Order Date:{orderDate}</h4>
+                    {/* <h4>Order Date:{orderDate}</h4> */}
                     <table>
                         <thead>
                             <tr>
@@ -156,9 +169,9 @@ const ShoppingCart = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {itemList.map((item) => (
+                            {itemList.map((item, index) => (
                                 item._id === selectedItem._id ?
-                                    <tr key={item.productId}>
+                                    <tr key={index+1}>
                                         <td>{item.productTitle}</td>
                                         <td>
                                             <input id="newQty" type="number" placeholder={item.quantity} min="1" />
@@ -171,7 +184,7 @@ const ShoppingCart = () => {
                                         </td>
                                     </tr>
                                     :
-                                    <tr key={item.productId}>
+                                    <tr key={index+1}>
                                         <td>{item.productTitle}</td>
                                         <td>{item.quantity}</td>
                                         <td>${item.priceSubTotal}</td>

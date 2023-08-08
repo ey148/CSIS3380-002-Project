@@ -1,13 +1,38 @@
-import React, { useState }  from 'react';
+import React, { useState, useEffect }  from 'react';
 import axios from 'axios';
-// import { cartList } from '../../src/data/cartList';
 
 const PlaceOrder = (props) => {
 
     const [quantity, setQuantity] = useState("1");
+    // const [userId] = useState(localStorage.getItem('userId'));
 
-    const handleOrderClick = (event, productId, productTitle, price, quantity) => {
+    // useEffect(() => {
+    //     console.log(userId);
+
+    //     if (userId==null || userId===0){
+    //         const returnUrl = encodeURIComponent(`/product/${props.productId}`);
+    //         window.location = `/login?return=${returnUrl}`;
+    //     }
+
+    // }, [])
+    const [userId, setUserId] = useState(localStorage.getItem('userId'));
+
+    useEffect(() => {
+        setUserId(localStorage.getItem('userId'));
+    }, []);
+
+    const handleOrderClick = async (event, productId, productTitle, price, quantity) => {
         event.preventDefault();
+        
+        console.log(`userId: ${userId}`);
+
+        //asked to login before adding to cart
+        if (userId == null || userId === "0") {
+            const returnUrl = encodeURIComponent(`/product/${props.productId}`);
+            window.location = `/login?return=${returnUrl}`;
+            return; 
+        }
+
         console.log(`Product Data: id=${productId}, title=${productTitle}, price=${price}`);
         console.log(`Quantity: ${quantity}`);
 
@@ -24,14 +49,16 @@ const PlaceOrder = (props) => {
             productTitle: productTitle,
             quantity: quantity,
             price: price,
-            priceSubTotal: priceSubTotal
+            priceSubTotal: priceSubTotal,
+            userId: userId
         };
         
-        axios
-              .post('http://localhost:5000/cart/add', cartItem)
-              .then((res) => {
-                    window.location = '/cart';
-              });
+        try {
+            await axios.post('http://localhost:5000/cart/add', cartItem);
+            window.location = '/cart';
+        } catch (error) {
+            console.log(error);
+        }
 
     };
 
@@ -45,7 +72,6 @@ const PlaceOrder = (props) => {
         <div>
             <form>
                 <label htmlFor="Quantity">Select quantity: </label>
-                {/* <input type="text" id="quantity" name="quantity" value={quantity} onChange={handleChange}/> */}
                 <input type="number" id="quantity" name="quantity" placeholder={quantity} min="1" onChange={handleChange} className="shorterInput"/>
             </form><br/>
             <button onClick={(event) => handleOrderClick(event, props.productId, props.productTitle, props.price, quantity)}>Add to Shopping Cart</button>

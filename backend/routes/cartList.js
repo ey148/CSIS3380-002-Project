@@ -14,6 +14,7 @@ router.route('/add').post(async (req, res) => {
     const quantity = parseInt(req.body.quantity);
     const price = parseFloat(req.body.price);
     const priceSubTotal = parseFloat(req.body.priceSubTotal);   
+    const userId = parseInt(req.body.userId);
 
     // create a new Activity object
     const newCartItem = await new Cart({
@@ -21,7 +22,8 @@ router.route('/add').post(async (req, res) => {
         productTitle,
         quantity,
         price,
-        priceSubTotal
+        priceSubTotal,
+        userId
     });
 
     console.log(newCartItem);
@@ -45,6 +47,19 @@ router.route('/:id').get(async (req, res) => {
         })
         .catch((err) => res.status(400).json('Error: ' + err));
 });
+
+//getting by userId
+router.route('/user/:userId').get(async (req, res) => {
+    
+    await Cart.find({ userId: req.params.userId})
+        .then((item) => {
+            res.json(item);
+            console.log('show items by user: ' + req.params.userId);
+        })
+        .catch((err) => res.status(400).json('Error: ' + err));
+});
+
+
 
 router.route('/update/:id').post(async (req, res) => {
     console.log(req.params.id);
@@ -77,6 +92,14 @@ router.route('/delete/:id').delete(async (req, res) => {
 router.route('/clear').delete((req, res) => {
     Cart.deleteMany({})
         .then(() => res.json('All CartItems deleted!'))
+        .catch((err) => res.status(400).json('Error: ' + err));
+});
+
+router.route('/clear/:userId').delete((req, res) => {
+
+    const userId = req.params.userId;
+    Cart.deleteMany({userId: userId})
+        .then(() => res.json(`CartItems for user${userId} deleted!`))
         .catch((err) => res.status(400).json('Error: ' + err));
 });
 

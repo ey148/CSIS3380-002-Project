@@ -106,6 +106,8 @@ const ProductsOverview = () => {
     }
   };
 
+
+  //issue with productId
   const handleProductClick = (productId) => {
     console.log(productId);
     navigate(`/product/${productId}`, { state: { productId: productId } });
@@ -147,8 +149,6 @@ const ProductsOverview = () => {
           </li>
         </ul>
 
-
-
       </div>
 
       <ul className="container">
@@ -165,8 +165,7 @@ const ProductsOverview = () => {
             rating={calculateAverageRating(product.productId)}
             countRating={calculateCountRating(product.productId)}
             updateRating={updateRating}
-            key={product.id}
-
+            // key={product.id}
           />
         ))}
       </ul>
