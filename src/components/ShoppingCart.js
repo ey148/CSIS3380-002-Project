@@ -39,7 +39,7 @@ const ShoppingCart = () => {
         //         console.log(error)
         //     })
         // eslint-disable-next-line
-    }, []);
+    }, [itemList]);
 
     // useEffect(() => {
     //     // Get the current date and format it as 'MM/DD/YYYY'
