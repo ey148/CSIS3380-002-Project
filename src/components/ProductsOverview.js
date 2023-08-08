@@ -137,7 +137,6 @@ const ProductsOverview = () => {
           <input type="button" value="Search" id="searchBtn" onClick={handleSearch} />
         </h4>
         <ul className="product-nav">
-          <li><h3>Filter by category:</h3></li>
           <li className={selectedCategory === 'Tent' ? 'active' : ''} onClick={() => handleCategoryClick('Tent')}>
             <h3><u>Tents</u></h3>
           </li>
