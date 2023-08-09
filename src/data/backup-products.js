@@ -39,7 +39,7 @@ export const ALLproducts = [
     model: "Nylon taffeta body and rainfly are light and durable,Uncoated walls and large mesh side panels let the tent breathe under the urethane-coated fly to help reduce condensation",
     price: 186.73,
     stock: 50,
-    description: "this is a description",
+    description: "The Meramac series tents are all free standing 2-pole designs with shock corded fiberglass with aluminum ferrules. The ferrules are the 'connectors' that hold the poles together and we use aluminum, rather than steel, because aluminum can never rust.",
     img_src: "../images/8/938ef9e1-5992-473b-833f-e7981b1ea953.jpg",
     id: "item-4",
   },

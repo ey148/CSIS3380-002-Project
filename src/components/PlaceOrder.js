@@ -26,12 +26,13 @@ const PlaceOrder = (props) => {
         
         console.log(`userId: ${userId}`);
 
-        //asked to login before adding to cart
-        if (userId == null || userId === "0") {
-            const returnUrl = encodeURIComponent(`/product/${props.productId}`);
-            window.location = `/login?return=${returnUrl}`;
-            return; 
-        }
+        //check Login before adding to cart
+        props.checkLogin();
+        // if (userId == null || userId === "0") {
+        //     const returnUrl = encodeURIComponent(`/product/${props.productId}`);
+        //     window.location = `/login?return=${returnUrl}`;
+        //     return; 
+        // }
 
         console.log(`Product Data: id=${productId}, title=${productTitle}, price=${price}`);
         console.log(`Quantity: ${quantity}`);

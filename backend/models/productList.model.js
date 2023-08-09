@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Create a Schema object
-const productSchema = new mongoose.Schema({
+const productSchema = new Schema({
     productId: { type: String, required: true },
     title: { type: String, required: true },
     category: { type: String, required: true },
@@ -17,7 +17,8 @@ const productSchema = new mongoose.Schema({
 });
 
 
-// create ProductModel
-const productModel = mongoose.model("productModel", productSchema);
+// create Product Table
+// const productModel = mongoose.model("productModel", productSchema);
+const productModel = mongoose.model("product", productSchema);
 
 module.exports = productModel;

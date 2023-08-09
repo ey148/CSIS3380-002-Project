@@ -40,6 +40,18 @@ router.route('/add').post(async (req, res) => {
             console.log('newProduct added')
         })
         .catch((err) => res.status(400).json('Error: ' + err));
+
+    //insert allProducts
+    // const productsToAdd = req.body; 
+
+    // Product.insertMany(productsToAdd)
+    // .then(insertedProducts => {
+    //     res.json(insertedProducts);
+    //     console.log('Ratings added:', insertedProducts);
+    // })
+    // .catch(err => {
+    //     res.status(400).json('Error: ' + err);
+    // });
 });
 
 //getting specific item for edit (using productId)

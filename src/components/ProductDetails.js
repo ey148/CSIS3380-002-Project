@@ -10,20 +10,89 @@ const ProductDetails = () => {
   const [stars, setStars] = useState([]); // State to store calculated stars
   const [inputRating, setInputRating] = useState('');
   const [ratingSubmitted, setRatingSubmitted] = useState(false);
+  const [userId, setUserId] = useState(localStorage.getItem('userId'));
+  const [rated, setRated] = useState(false);
 
   //getting productId
   const productId = location.state?.productId;
+
+  //check userId
+  useEffect(() =>  {
+      //check user
+      setUserId(localStorage.getItem('userId'));
+      console.log(`userId= ${userId}`);
+
+      //move from useEffect(),[productId] => productId will not change
+      axios
+        .get(`http://localhost:5000/product/${productId}`)
+        .then((response) => {
+          setProductData(response.data); // Set the fetched product data to the state
+        })
+        .catch((error) => {
+          console.error('Error fetching product details:', error);
+        });
+
+      axios
+        .get('http://localhost:5000/rating/')
+        .then((response) => {
+          setRatings(response.data); // Set the fetched products to the state
+          checkRating();
+        })
+        .catch((error) => {
+          console.error('Error fetching ratings:', error);
+        });        
+
+    // eslint-disable-next-line
+  }, []);
+
+//check rating
+ function checkRating() {
+
+    if (userId !== null && userId !== 0) {
+      axios
+        .get(`http://localhost:5000/rating?userId=${userId}&productId=${productId}`)
+        .then((response) => {
+            console.log(response.data);
+            if (response.data === null || response.data.length === 0) {
+              setRated(false);
+            } else {
+              setRated(true);
+            }
+        })
+        .catch((error) => {
+          console.error('Error fetching rating by userId & productId: ', error);
+        });
+    }
+  };
+
+  useEffect(()=>{
+      console.log(`rated: ${rated}`);
+  }, [rated]);
+
+  //check Login before rating
+  function checkLogin() {
+      if (userId == null || userId === 0) {
+            const returnUrl = encodeURIComponent(`/product/${productId}`);
+            window.location = `/login?return=${returnUrl}`;
+            return; 
+      }
+  };
+          
 
   const handleInputRatingChange = (event) => {
     setInputRating(event.target.value);
   };
 
   const handleSubmitRating = () => {
+
+    checkLogin();
+
     if (inputRating !== '') {
       // Create a new rating object with the productId and rating value
       const newRatingObj = {
         productId: productData.productId,
         rating: parseInt(inputRating),
+        userId: userId
       };
 
       // Make a POST request to insert the new rating into the database
@@ -43,28 +112,30 @@ const ProductDetails = () => {
     }
   };
 
-  useEffect(() => {
-    // Fetch product details from the server using axios
-    axios
-      .get(`http://localhost:5000/product/${productId}`)
-      .then((response) => {
-        setProductData(response.data); // Set the fetched product data to the state
-      })
-      .catch((error) => {
-        console.error('Error fetching product details:', error);
-      });
+  //useEffect(() => {
+  //   // Fetch product details from the server using axios
+  //   axios
+  //     .get(`http://localhost:5000/product/${productId}`)
+  //     .then((response) => {
+  //       setProductData(response.data); // Set the fetched product data to the state
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error fetching product details:', error);
+  //     });
 
-    axios
-      .get('http://localhost:5000/rating/')
-      .then((response) => {
-        setRatings(response.data); // Set the fetched products to the state
-      })
-      .catch((error) => {
-        console.error('Error fetching ratings:', error);
-      });
-  }, [productId]);
+  //   axios
+  //     .get('http://localhost:5000/rating/')
+  //     .then((response) => {
+  //       setRatings(response.data); // Set the fetched products to the state
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error fetching ratings:', error);
+  //     });
+  // }, [productId]);
 
   useEffect(() => {
+    console.log(ratings);
+
     const calculateAverageRating = () => {
       if (!ratings || ratings.length === 0) {
         return 0;
@@ -133,7 +204,7 @@ const ProductDetails = () => {
   }
 
   const isStock = productData.stock > 0;
-  console.log("isStock: " + isStock);
+  // console.log("isStock: " + isStock);
   
   return (
     <div className="main-content">
@@ -151,21 +222,25 @@ const ProductDetails = () => {
 
             <p>Rating: {stars}</p>
 
-            {ratingSubmitted ? (
-            <p>Thanks for your rating!</p>
-            ) : (
-            <p>
-            <label>Your Rating(1-5): </label> 
-            <input type="number" id="inputRating" name="inputRating" placeholder={inputRating} min="1" max="5" onChange={handleInputRatingChange} className="shorterInput" />
-            <input type="button" id="BtnInputRating" value="Rate" onClick={handleSubmitRating} />
-            </p>
-            )}
+            {ratingSubmitted || rated ? (
+              <p>Thanks for your rating!</p>
+              ) 
+              : 
+              (
+                <p>
+                  <label>Your Rating(1-5): </label> 
+                  <input type="number" id="inputRating" name="inputRating" placeholder={inputRating} min="1" max="5" onChange={handleInputRatingChange} className="shorterInput" />
+                  <input type="button" id="BtnInputRating" value="Rate" onClick={handleSubmitRating} />
+                </p>
+              )
+            }
 
             {isStock ? (
               <PlaceOrder
                 productId={productData.productId}
                 productTitle={productData.title}
                 price={productData.price}
+                checkLogin={checkLogin}
               />
             ) : (
               <p className="highlightText">Out of Stock</p>

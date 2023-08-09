@@ -7,10 +7,10 @@ const Schema = mongoose.Schema;
 const RatingSchema = new Schema({
     productId: { type: String, required: true },
     rating: { type: Number, required: true },
-    countRating: { type: Number, required: true }
+    userId: { type: Number, require: true }
 });
 
 // create CartListModel
-const productRatingListModel = mongoose.model("productRatingListModel", RatingSchema);
+const productRatingListModel = mongoose.model("productRating", RatingSchema);
 
 module.exports = productRatingListModel;

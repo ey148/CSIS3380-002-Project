@@ -1,0 +1,205 @@
+{
+    "seedRating" : [
+    {
+        "productId": "item-21",
+        "rating": 2,
+        "userId": 1
+    },
+    {
+        "productId": "item-22",
+        "rating": 4,
+        "userId": 2
+    },
+    {
+        "productId": "item-29",
+        "rating": 5,
+        "userId": 3
+    },
+    {
+        "productId": "item-23",
+        "rating": 5,
+        "userId": 4
+    },
+    {
+        "productId": "item-24",
+        "rating": 3,
+        "userId": 1
+    },
+    {
+        "productId": "item-30",
+        "rating": 5,
+        "userId": 2
+    },
+    {
+        "productId": "item-25",
+        "rating": 2,
+        "userId": 3
+    },
+    {
+        "productId": "item-27",
+        "rating": 2,
+        "userId": 4
+    },
+    {
+        "productId": "item-26",
+        "rating": 5,
+        "userId": 1
+    },
+    {
+        "productId": "item-28",
+        "rating": 4,
+        "userId": 2
+    },
+    {
+        "productId": "item-41",
+        "rating": 2,
+        "userId": 3
+    },
+    {
+        "productId": "item-12",
+        "rating": 3,
+        "userId": 4
+    },
+    {
+        "productId": "item-9",
+        "rating": 5,
+        "userId": 1
+    },
+    {
+        "productId": "item-9",
+        "rating": 5,
+        "userId": 2
+    },
+    {
+        "productId": "item-12",
+        "rating": 1,
+        "userId": 3
+    },
+    {
+        "productId": "item-3",
+        "rating": 3,
+        "userId": 4
+    },
+    {
+        "productId": "item-17",
+        "rating": 1,
+        "userId": 1
+    },
+    {
+        "productId": "item-3",
+        "rating": 1,
+        "userId": 2
+    },
+    {
+        "productId": "item-3",
+        "rating": 5,
+        "userId": 3
+    },
+    {
+        "productId": "item-12",
+        "rating": 5,
+        "userId": 4
+    },
+    {
+        "productId": "item-14",
+        "rating": 1,
+        "userId": 1
+    },
+    {
+        "productId": "item-27",
+        "rating": 5,
+        "userId": 2
+    },
+    {
+        "productId": "item-13",
+        "rating": 5,
+        "userId": 3
+    },
+    {
+        "productId": "item-25",
+        "rating": 5,
+        "userId": 4
+    },
+    {
+        "productId": "item-9",
+        "rating": 2,
+        "userId": 1
+    },
+    {
+        "productId": "item-30",
+        "rating": 3,
+        "userId": 2
+    },
+    {
+        "productId": "item-2",
+        "rating": 5,
+        "userId": 3
+    },
+    {
+        "productId": "item-13",
+        "rating": 1,
+        "userId": 4
+    },
+    {
+        "productId": "item-2",
+        "rating": 5,
+        "userId": 1
+    },
+    {
+        "productId": "item-23",
+        "rating": 5,
+        "userId": 2
+    },
+    {
+        "productId": "item-5",
+        "rating": 3,
+        "userId": 3
+    },
+    {
+        "productId": "item-3",
+        "rating": 4,
+        "userId": 4
+    },
+    {
+        "productId": "item-2",
+        "rating": 4,
+        "userId": 1
+    },
+    {
+        "productId": "item-8",
+        "rating": 5,
+        "userId": 2
+    },
+    {
+        "productId": "item-15",
+        "rating": 4,
+        "userId": 3
+    },
+    {
+        "productId": "item-1",
+        "rating": 4,
+        "userId": 4
+    },
+    {
+        "productId": "item-6",
+        "rating": 3,
+        "userId": 1
+    },
+    {
+        "productId": "item-4",
+        "rating": 5,
+        "userId": 2
+    },
+    {
+        "productId": "item-6",
+        "rating": 4,
+        "userId": 3
+    },
+    {
+        "productId": "item-9",
+        "rating": 4,
+        "userId": 4
+    }
+
+]
+}
