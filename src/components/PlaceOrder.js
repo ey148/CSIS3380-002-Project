@@ -55,7 +55,7 @@ const PlaceOrder = (props) => {
         };
         
         try {
-            await axios.post('http://localhost:5000/cart/add', cartItem);
+            await axios.post('https://three380projectbackend.onrender.com/cart/add', cartItem);
             window.location = '/cart';
         } catch (error) {
             console.log(error);

@@ -16,7 +16,7 @@ const Home = () => {
 
   const calculateAverageRating = async (productId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/rating`);
+      const response = await axios.get(`https://three380projectbackend.onrender.com/rating`);
       const ratings = response.data;
 
       const filteredRatings = ratings.filter(rating => rating.productId === productId);
@@ -47,7 +47,7 @@ const Home = () => {
   
       for (const category of categories) {
         try {
-          const response = await axios.get('http://localhost:5000/product/');
+          const response = await axios.get('https://three380projectbackend.onrender.com/product/');
           const products = response.data;
   
           // Filter products by category

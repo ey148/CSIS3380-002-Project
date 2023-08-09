@@ -32,7 +32,7 @@ const ShoppingCart = () => {
         
         //search cart by user
         axios
-            .get(`http://localhost:5000/cart?userId=${userId}`)
+            .get(`https://three380projectbackend.onrender.com/cart?userId=${userId}`)
             .then((response) => {
                 setItemList(response.data);
                 //setTotalQuantity(itemList.reduce((total, item) => total + item.quantity, 0));
@@ -75,7 +75,7 @@ const ShoppingCart = () => {
             console.log(updatedItem);
 
             axios
-                .post(`http://localhost:5000/cart/update/${updatedItem._id}`, updatedItem)
+                .post(`https://three380projectbackend.onrender.com/cart/update/${updatedItem._id}`, updatedItem)
                 .then((response) => {
                     console.log("cartItems edit updated");
                     setCartUpdateCounter(prevCounter => prevCounter + 1);
@@ -91,7 +91,7 @@ const ShoppingCart = () => {
         event.preventDefault();
 
         axios
-            .get(`http://localhost:5000/cart/${_id}`)
+            .get(`https://three380projectbackend.onrender.com/cart/${_id}`)
             .then((response) => {
                 setSelectedItem(response.data); //fetch the item
                 setCartUpdateCounter(prevCounter => prevCounter + 1);
@@ -121,7 +121,7 @@ const ShoppingCart = () => {
         event.preventDefault();
 
         axios
-            .delete(`http://localhost:5000/cart/delete/${_id}`)
+            .delete(`https://three380projectbackend.onrender.com/cart/delete/${_id}`)
             .then((response) => {
                 // window.location = '/cart';
                 setCartUpdateCounter(prevCounter => prevCounter + 1);
@@ -147,7 +147,7 @@ const ShoppingCart = () => {
 
         //post cartItems to order
         await axios
-            .post(`http://localhost:5000/order/add`, newOrder)
+            .post(`https://three380projectbackend.onrender.com/order/add`, newOrder)
             .then((response) => {
                 console.log(response.config.data);
                 console.log("newOrder added!");
@@ -171,7 +171,7 @@ const ShoppingCart = () => {
 
         //clear for specific user
         try {
-            axios.delete(`http://localhost:5000/cart/clear/${userId}`);
+            axios.delete(`https://three380projectbackend.onrender.com/cart/clear/${userId}`);
             console.log(`Cart cleared for user${userId} successfully.`);
             setTotalQuantity(0);
         } catch (error) {

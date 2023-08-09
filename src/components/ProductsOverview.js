@@ -14,7 +14,7 @@ const ProductsOverview = () => {
 
   useEffect(() => {
     // Fetch products from the server using axios
-    axios.get('http://localhost:5000/product/')
+    axios.get('https://three380projectbackend.onrender.com/product/')
       .then(response => {
         setProducts(response.data); // Set the fetched products to the state
       })
@@ -23,7 +23,7 @@ const ProductsOverview = () => {
       });
 
     axios
-      .get('http://localhost:5000/rating/')
+      .get('https://three380projectbackend.onrender.com/rating/')
       .then(response => {
         setRatings(response.data); // Set the fetched products to the state
 

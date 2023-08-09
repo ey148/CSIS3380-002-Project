@@ -24,7 +24,7 @@ const ProductDetails = () => {
 
       //move from useEffect(),[productId] => productId will not change
       axios
-        .get(`http://localhost:5000/product/${productId}`)
+        .get(`https://three380projectbackend.onrender.com/product/${productId}`)
         .then((response) => {
           setProductData(response.data); // Set the fetched product data to the state
         })
@@ -33,7 +33,7 @@ const ProductDetails = () => {
         });
 
       axios
-        .get('http://localhost:5000/rating/')
+        .get('https://three380projectbackend.onrender.comrating/')
         .then((response) => {
           setRatings(response.data); // Set the fetched products to the state
           checkRating();
@@ -50,7 +50,7 @@ const ProductDetails = () => {
 
     if (userId !== null && userId !== 0) {
       axios
-        .get(`http://localhost:5000/rating?userId=${userId}&productId=${productId}`)
+        .get(`https://three380projectbackend.onrender.com/rating?userId=${userId}&productId=${productId}`)
         .then((response) => {
             console.log(response.data);
             if (response.data === null || response.data.length === 0) {
@@ -97,7 +97,7 @@ const ProductDetails = () => {
 
       // Make a POST request to insert the new rating into the database
       axios
-        .post('http://localhost:5000/rating/add', newRatingObj)
+        .post('https://three380projectbackend.onrender.com/rating/add', newRatingObj)
         .then((response) => {
           // Update the ratings state with the new rating
           setRatings([...ratings, newRatingObj]);

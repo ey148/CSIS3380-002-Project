@@ -23,7 +23,7 @@ const LoginPage = (props) => {
         console.log('Username:', username);
         console.log('Password:', password);
 
-        axios.get(`http://localhost:5000/user/${username}`)
+        axios.get(`https://three380projectbackend.onrender.com/user/${username}`)
             .then(response => {
                 console.log(response.data);
                 setUser(response.data);
