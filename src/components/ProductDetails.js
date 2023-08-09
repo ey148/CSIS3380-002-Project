@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios'; // Import axios
 import PlaceOrder from './PlaceOrder';
+import apiLink from './config.js'
 
 const ProductDetails = () => {
   const location = useLocation();
@@ -24,7 +25,7 @@ const ProductDetails = () => {
 
       //move from useEffect(),[productId] => productId will not change
       axios
-        .get(`https://three380projectbackend.onrender.com/product/${productId}`)
+        .get(`${apiLink}/product/${productId}`)
         .then((response) => {
           setProductData(response.data); // Set the fetched product data to the state
         })
@@ -33,7 +34,7 @@ const ProductDetails = () => {
         });
 
       axios
-        .get('https://three380projectbackend.onrender.com/rating/')
+        .get(`${apiLink}/rating/`)
         .then((response) => {
           setRatings(response.data); // Set the fetched products to the state
           checkRating();
@@ -50,7 +51,7 @@ const ProductDetails = () => {
 
     if (userId !== null && userId !== 0) {
       axios
-        .get(`https://three380projectbackend.onrender.com/rating?userId=${userId}&productId=${productId}`)
+        .get(`${apiLink}/rating?userId=${userId}&productId=${productId}`)
         .then((response) => {
             console.log(response.data);
             if (response.data === null || response.data.length === 0) {
@@ -97,7 +98,7 @@ const ProductDetails = () => {
 
       // Make a POST request to insert the new rating into the database
       axios
-        .post('https://three380projectbackend.onrender.com/rating/add', newRatingObj)
+        .post(`${apiLink}/rating/add`, newRatingObj)
         .then((response) => {
           // Update the ratings state with the new rating
           setRatings([...ratings, newRatingObj]);

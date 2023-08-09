@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import apiLink from './config.js'
 // import 'bootstrap/dist/css/bootstrap.min.css'; //will change overall layout if added
 
 const ShoppingCart = () => {
@@ -32,7 +33,7 @@ const ShoppingCart = () => {
         
         //search cart by user
         axios
-            .get(`https://three380projectbackend.onrender.com/cart?userId=${userId}`)
+            .get(`${apiLink}/cart?userId=${userId}`)
             .then((response) => {
                 setItemList(response.data);
                 //setTotalQuantity(itemList.reduce((total, item) => total + item.quantity, 0));
@@ -75,7 +76,7 @@ const ShoppingCart = () => {
             console.log(updatedItem);
 
             axios
-                .post(`https://three380projectbackend.onrender.com/cart/update/${updatedItem._id}`, updatedItem)
+                .post(`${apiLink}/cart/update/${updatedItem._id}`, updatedItem)
                 .then((response) => {
                     console.log("cartItems edit updated");
                     setCartUpdateCounter(prevCounter => prevCounter + 1);
@@ -91,7 +92,7 @@ const ShoppingCart = () => {
         event.preventDefault();
 
         axios
-            .get(`https://three380projectbackend.onrender.com/cart/${_id}`)
+            .get(`${apiLink}/cart/${_id}`)
             .then((response) => {
                 setSelectedItem(response.data); //fetch the item
                 setCartUpdateCounter(prevCounter => prevCounter + 1);
@@ -121,7 +122,7 @@ const ShoppingCart = () => {
         event.preventDefault();
 
         axios
-            .delete(`https://three380projectbackend.onrender.com/cart/delete/${_id}`)
+            .delete(`${apiLink}/cart/delete/${_id}`)
             .then((response) => {
                 // window.location = '/cart';
                 setCartUpdateCounter(prevCounter => prevCounter + 1);
@@ -147,7 +148,7 @@ const ShoppingCart = () => {
 
         //post cartItems to order
         await axios
-            .post(`https://three380projectbackend.onrender.com/order/add`, newOrder)
+            .post(`${apiLink}/order/add`, newOrder)
             .then((response) => {
                 console.log(response.config.data);
                 console.log("newOrder added!");
@@ -171,7 +172,7 @@ const ShoppingCart = () => {
 
         //clear for specific user
         try {
-            axios.delete(`https://three380projectbackend.onrender.com/cart/clear/${userId}`);
+            axios.delete(`${apiLink}/cart/clear/${userId}`);
             console.log(`Cart cleared for user${userId} successfully.`);
             setTotalQuantity(0);
         } catch (error) {

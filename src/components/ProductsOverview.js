@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios'; // Import axios
 import ProductBox from './ProductBox';
+import apiLink from './config.js'
 
 const ProductsOverview = () => {
   const location = useLocation();
@@ -14,7 +15,7 @@ const ProductsOverview = () => {
 
   useEffect(() => {
     // Fetch products from the server using axios
-    axios.get('https://three380projectbackend.onrender.com/product/')
+    axios.get(`${apiLink}/product/`)
       .then(response => {
         setProducts(response.data); // Set the fetched products to the state
       })
@@ -23,7 +24,7 @@ const ProductsOverview = () => {
       });
 
     axios
-      .get('https://three380projectbackend.onrender.com/rating/')
+      .get(`${apiLink}/rating/`)
       .then(response => {
         setRatings(response.data); // Set the fetched products to the state
 

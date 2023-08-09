@@ -2,9 +2,17 @@ const router = require('express').Router();
 let Product = require('../models/productList.model');
 
 router.route('/').get((req, res) => {
-    Product.find()
+    const category = req.query.category;
+
+    if (category) {
+      Product.find({ category: category })
         .then((product) => res.json(product))
         .catch((err) => res.status(400).json('Error: ' + err));
+    } else {    
+      Product.find()
+        .then((product) => res.json(product))
+        .catch((err) => res.status(400).json('Error: ' + err));
+    }    
 });
 
 router.route('/add').post(async (req, res) => {

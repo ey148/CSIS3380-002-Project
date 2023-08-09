@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Import axios
+import apiLink from './config.js'
 
 const Home = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Home = () => {
 
   const calculateAverageRating = async (productId) => {
     try {
-      const response = await axios.get(`https://three380projectbackend.onrender.com/rating`);
+      const response = await axios.get(`${apiLink}/rating`);
       const ratings = response.data;
 
       const filteredRatings = ratings.filter(rating => rating.productId === productId);
@@ -47,7 +48,7 @@ const Home = () => {
   
       for (const category of categories) {
         try {
-          const response = await axios.get('https://three380projectbackend.onrender.com/product/');
+          const response = await axios.get(`${apiLink}/product/`);
           const products = response.data;
   
           // Filter products by category
