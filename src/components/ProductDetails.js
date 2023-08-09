@@ -152,7 +152,7 @@ const ProductDetails = () => {
             <p>Rating: {stars}</p>
 
             {ratingSubmitted ? (
-            <p>Thanks for your input!</p>
+            <p>Thanks for your rating!</p>
             ) : (
             <p>
             <label>Your Rating(1-5): </label> 
