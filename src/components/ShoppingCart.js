@@ -45,6 +45,8 @@ const ShoppingCart = () => {
     }, [userId, cartUpdateCounter]);
 
     useEffect(() => {
+        console.log(`itemList length: ${itemList.length}`); //0
+
         if (itemList.length > 0) {
             const totalQty = itemList.reduce((total, item) => total + item.quantity, 0);
             const totalPrice = itemList.reduce((total, item) => total + parseFloat(item.priceSubTotal), 0).toFixed(2);
@@ -52,6 +54,11 @@ const ShoppingCart = () => {
             setTotalQuantity(totalQty);
             setTotalPrice(totalPrice);
         }
+        else {
+            setTotalQuantity(0);
+            setTotalPrice(0);
+        }
+
     }, [itemList]);
 
     // useEffect(() => {
@@ -178,7 +185,7 @@ const ShoppingCart = () => {
     return (
         <div className="main-content">
             <h2>Shopping Cart</h2>
-            {totalQuantity === 0 ?
+            {totalQuantity === 0 && itemList.length===0 ?
                 <h4>Your cart is empty</h4>
                 :
                 <div>
