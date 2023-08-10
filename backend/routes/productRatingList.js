@@ -21,6 +21,11 @@ router.route('/').get((req, res) => {
       .then((ratings) => res.json(ratings))
       .catch((err) => res.status(400).json('Error: ' + err));  
   }
+  else if (productId) {
+    Rating.find({ productId: productId })
+      .then((ratings) => res.json(ratings))
+      .catch((err) => res.status(400).json('Error: ' + err));  
+  } 
   else {
     Rating.find()
       .then((ratings) => res.json(ratings))
