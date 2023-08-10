@@ -149,32 +149,40 @@ const Home = () => {
       <h3 className="subtitle">Popular Items By Category</h3>
 
       <div className="home-table-container">
-          <div class="row">
-              <div className="col" >
-                  {maxRatings['Tent'] && (
-                      <span onClick={() => handleProductClick(maxRatings['Tent'].productId)}>
-                          <img className="popImg" src={maxRatings['Tent'].img_src} alt="Tents" />
-                          <p className="productTitle">{maxRatings['Tent'].title}</p>
-                      </span>
-                  )}  
-              </div>
-              <div className="col" >
-                  {maxRatings['Cooking Utensils'] && (
-                      <span onClick={() => handleProductClick(maxRatings['Cooking Utensils'].productId)}>
-                          <img className="popImg" src={maxRatings['Cooking Utensils'].img_src} alt="Cooking Utensils" />
-                          <p className="productTitle">{maxRatings['Cooking Utensils'].title}</p>
-                      </span>
-                  )}
-              </div>
-              <div className="col" >
-                  {maxRatings['Sleeping bags'] && (
-                      <span onClick={() => handleProductClick(maxRatings['Sleeping bags'].productId)}>
-                          <img className="popImg" src={maxRatings['Sleeping bags'].img_src} alt="Sleeping Bags" />
-                          <p className="productTitle">{maxRatings['Sleeping bags'].title}</p>
-                      </span>
-                  )}
-              </div>
-          </div>
+          
+          { isLoading ? 
+              <p style={{ fontWeight: "bold", textAlign: "center"}}>Loading...</p>
+              :
+              (
+                <div class="row">
+                    <div className="col" >
+                        {maxRatings['Tent'] && (
+                            <span onClick={() => handleProductClick(maxRatings['Tent'].productId)}>
+                                <img className="popImg" src={maxRatings['Tent'].img_src} alt="Tents" />
+                                <p className="productTitle">{maxRatings['Tent'].title}</p>
+                            </span>
+                        )}  
+                    </div>
+                    <div className="col" >
+                        {maxRatings['Cooking Utensils'] && (
+                            <span onClick={() => handleProductClick(maxRatings['Cooking Utensils'].productId)}>
+                                <img className="popImg" src={maxRatings['Cooking Utensils'].img_src} alt="Cooking Utensils" />
+                                <p className="productTitle">{maxRatings['Cooking Utensils'].title}</p>
+                            </span>
+                        )}
+                    </div>
+                    <div className="col" >
+                        {maxRatings['Sleeping bags'] && (
+                            <span onClick={() => handleProductClick(maxRatings['Sleeping bags'].productId)}>
+                                <img className="popImg" src={maxRatings['Sleeping bags'].img_src} alt="Sleeping Bags" />
+                                <p className="productTitle">{maxRatings['Sleeping bags'].title}</p>
+                            </span>
+                        )}
+                    </div>
+                </div>
+              )
+          }
+
       </div>
 
     </div>
