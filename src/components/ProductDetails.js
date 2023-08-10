@@ -33,7 +33,7 @@ const ProductDetails = () => {
         });
 
       axios
-        .get('https://three380projectbackend.onrender.comrating/')
+        .get('https://three380projectbackend.onrender.com/rating/')
         .then((response) => {
           setRatings(response.data); // Set the fetched products to the state
           checkRating();

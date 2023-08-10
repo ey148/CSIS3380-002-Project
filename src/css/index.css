@@ -1,14 +1,14 @@
-/* ================================= 
+/* /* ================================= 
   WEB FONTS
 ==================================== */
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
+/* @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700); */
 
 /* ================================= 
   ELEMENT STYLES
 ==================================== */
 
-* {
+/* * {
   box-sizing: border-box;
 }
 body {
@@ -46,7 +46,7 @@ hr {
   HEADER
 ==================================== */
 
-.home a,
+/* .home a,
 input,
 button {
   padding: .5em;
@@ -61,7 +61,7 @@ button {
 
 /* FORM & BUTTON STYLES -------- */
 
-.home a,
+/*.home a,
 input,
 button {
   padding: .5em;
@@ -85,7 +85,7 @@ button {
   LAYOUT & PAGE STYLES
 ==================================== */
 
-.container {
+/*.container {
   width: 95%;
   max-width: 780px;
   padding-bottom: 2em;
@@ -110,7 +110,7 @@ header {
 
 /* MAIN NAV -------- */
 
-.main-nav a {
+/*.main-nav a {
   font-size: .95em;
   color: #222;
   text-align: center;
@@ -128,7 +128,7 @@ header {
 
 
   /* MAIN NAV -------- */
-  .icn-logo {
+  /*.icn-logo {
     margin-right: auto;
     padding: 0 2em;
   }
@@ -145,4 +145,4 @@ header {
   .main-nav a:hover {
     border-color: rgba(0,0,0, .1);
   }
-  
+   */ 

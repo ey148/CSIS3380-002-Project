@@ -1,105 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
 
-body, .appDiv {
-  background-color:  bisque;
+body{
+  background:  bisque;
   margin: 0;
   /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
 }
 
-/* Header & Footer */
-.navbar.navbar-light{
-  background-color: burlywood;
-}
-
-#brandName{
-  font-size: 34px;
-  font-weight: bold;
-  color: #5a2a1f;
-}
-
-.nav-item.active {
-  font-size: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-.navbar-nav .nav-item.active .nav-link {
-  color: #6C3428; /* Set the initial font color */
-  transition: color 0.3s; /* Add a smooth transition effect */
-}
-
-.navbar-nav .nav-item.active .nav-link:hover {
-  color:  #ba3e19; 
-  font-weight: bold;
-}
-
-.btn.btn-secondary, 
-.btn.btn-secondary.dropdown-toggle {
-  background-color:#6C3428 ;
-  border: none;
-  border-radius: 30px;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.btn.btn-secondary:hover{
-  background-color: #ba3e19;
-}
-
-#brandTagline{
-  font-size: 24px;
-  color: #5a2a1f;
-}
-
-.container-md p{
-  margin-top: 20px;
-}
-
-/* Homepage */
-
-.main-content {
-  background-color: bisque;
-  justify-content: center;
-  margin: 0;
-}
-
-#mainImg {
-  display: block;
-  margin: 0 auto;
-}
-
-.subtitle {
-  text-align: center;
-  margin-top: 45px;
-  margin-bottom: 30px;
-}
-
-.home-table-container {
-  max-width: 705px; 
-  margin: 0 auto; 
-  padding: 20px; 
-}
-
-.row {
-  display: flex; 
-  justify-content: space-between; 
-}
-
-.col {
-  text-align: center; 
-  font-size: 16px;
-  font-weight: bold;
-  color: #6C3428;
-  cursor: pointer;
-}
-
-.productTitle{
-  font-size: 12px;
-  font-weight: lighter;
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-
-/* Products Overview */
 .container {
   width: 90%;
   max-width: 1100px;
@@ -109,6 +15,90 @@ body, .appDiv {
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   background-color: transparent;
+}
+
+/* Header */
+
+/* header {
+  background-color: burlywood;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 1.5%;
+  position: absolute;
+} */
+
+.nav-item.active {
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+/* .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  float: left;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+} */
+/* .main-nav {
+  /* display: inline; */
+  /* float: right; */
+  /* list-style: none;
+  margin: 0;
+  padding: 0;
+} */ 
+
+.main-content {
+  background-color: bisque;
+  justify-content: center;
+}
+
+
+/* Homepage */
+#mainImg {
+  display: block;
+  margin: 0 auto;
+}
+
+.subtitle {
+  text-align: center;
+
+}
+
+.table {
+  display: table;
+  border-spacing: 20px;
+  margin: 0 auto;
+}
+
+.row {
+  display: table-row;
+}
+
+.row>* {
+  display: table-cell;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: navy;
 }
 
 /* Product Box */
@@ -136,7 +126,10 @@ body, .appDiv {
   margin-bottom: 1.5em;
 }
 
-
+footer {
+  background-color: burlywood;
+  position: relative;
+}
 
 /* .globalnav1 {
   display: inline;
@@ -152,7 +145,9 @@ body, .appDiv {
   font-size: 25px;
 }
 
-
+.CompanyInfo {
+  display: inline-block;
+}
 
 /* Search Bar on Products Overview page */
 .product-nav li {
@@ -210,7 +205,6 @@ body, .appDiv {
 }
 
 .popImg {
-  cursor: pointer;
   width: 155px;
   /* Set the desired width */
   height: 155px;
@@ -219,9 +213,7 @@ body, .appDiv {
   /* This property ensures the image retains its aspect ratio and covers the entire box */
 }
 
-/* .linkCur {
-  cursor: pointer;
-} */
+
 
 .shorterInput {
   width: 56px;

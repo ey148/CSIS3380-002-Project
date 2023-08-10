@@ -1,6 +1,8 @@
 import '../css/App.css';
 import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/js/bootstrap.js';
 
 //App components
 import Header from './Header'
@@ -42,7 +44,7 @@ function App() {
   
   return (
   
-        <div>
+        <div className="appDiv">
             <Header
               userId={userId}
               fname={fname}
