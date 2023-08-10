@@ -1,5 +1,6 @@
 import React, { useState, useEffect }  from 'react';
 import axios from 'axios';
+import apiLink from './config.js'
 
 const PlaceOrder = (props) => {
 
@@ -55,7 +56,7 @@ const PlaceOrder = (props) => {
         };
         
         try {
-            await axios.post('https://three380projectbackend.onrender.com/cart/add', cartItem);
+            await axios.post(`${apiLink}/cart/add`, cartItem);
             window.location = '/cart';
         } catch (error) {
             console.log(error);

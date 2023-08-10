@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import apiLink from './config.js'
 
 const LoginPage = (props) => {
     
@@ -23,7 +24,7 @@ const LoginPage = (props) => {
         console.log('Username:', username);
         console.log('Password:', password);
 
-        axios.get(`https://three380projectbackend.onrender.com/user/${username}`)
+        axios.get(`${apiLink}/user/${username}`)
             .then(response => {
                 console.log(response.data);
                 setUser(response.data);

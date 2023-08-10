@@ -1,10 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Import axios
+import apiLink from './config.js'
 
 const Home = () => {
   const navigate = useNavigate();
   const [maxRatings, setMaxRatings] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleProductClick = (productId) => {
     navigate(`/product/${productId}`, { state: { productId: productId } });
@@ -16,22 +18,16 @@ const Home = () => {
 
   const calculateAverageRating = async (productId) => {
     try {
-      const response = await axios.get(`https://three380projectbackend.onrender.com/rating`);
+      const response = await axios.get(`${apiLink}/rating?productId=${productId}`);
       const ratings = response.data;
 
-      const filteredRatings = ratings.filter(rating => rating.productId === productId);
-
-      if (filteredRatings.length === 0) {
-        return 0;
-      }
-
-      const totalRating = filteredRatings.reduce((acc, rating) => {
+      const totalRating = ratings.reduce((acc, rating) => {  
         return acc + rating.rating;
       }, 0);
 
-      console.log("productId_cal", productId + '-' + totalRating + '-' + filteredRatings.length )
+      console.log("productId_cal", productId + '-' + totalRating + '-' + ratings.length )
 
-      const averageRating = totalRating / filteredRatings.length;
+      const averageRating = totalRating / ratings.length;
 
       return averageRating;
     } catch (error) {
@@ -44,22 +40,22 @@ const Home = () => {
     const fetchMaxRatings = async () => {
       const categories = ['Tent', 'Cooking Utensils', 'Sleeping bags'];
       const maxRatingsByCategory = {};
+
+      setIsLoading(true);
   
       for (const category of categories) {
         try {
-          const response = await axios.get('https://three380projectbackend.onrender.com/product/');
+          const response = await axios.get(`${apiLink}/product?category=${category}`);
           const products = response.data;
+          console.log("category: ", category);
+          console.log("category length: ", products.length);
   
-          // Filter products by category
-          const filteredProducts = products.filter(product => product.category === category);
-          console.log("category_start", category + '-' + products.length)
-
           let maxRating = 0;
           let maxRatingProduct = null;
   
-          for (const product of filteredProducts) {
+          for (const product of products) {
             const averageRating = await calculateAverageRating(product.productId);
-            console.log("product", product.productId + '-' + averageRating)
+            console.log("product", product.productId)
             if (averageRating > maxRating) {
               maxRating = averageRating;
               maxRatingProduct = product;
@@ -73,6 +69,8 @@ const Home = () => {
       }
   
       setMaxRatings(maxRatingsByCategory);
+
+      setIsLoading(false);
     };
   
     fetchMaxRatings();
