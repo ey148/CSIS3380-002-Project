@@ -83,19 +83,19 @@ const Home = () => {
       <h2 className="subtitle">Everything you need for camping</h2>
       <div className="table">
         <div className="row">
-          <span onClick={() => handleCategoryClick('Tent')}><u>Tents</u></span>
-          <span onClick={() => handleCategoryClick('Cooking Utensils')}><u>Cooking Utensils</u></span>
-          <span onClick={() => handleCategoryClick('Sleeping bags')}><u>Sleeping Bags</u></span>
+          <span className="linkCur" onClick={() => handleCategoryClick('Tent')}><u>Tents</u></span>
+          <span className="linkCur" onClick={() => handleCategoryClick('Cooking Utensils')}><u>Cooking Utensils</u></span>
+          <span className="linkCur" onClick={() => handleCategoryClick('Sleeping bags')}><u>Sleeping Bags</u></span>
         </div>
         <div className="row">
           <span onClick={() => handleCategoryClick('Tent')}>
-            <img src="./images/Tents_index.jpg" alt="Tents" width="155" height="155" />
+            <img className="linkCur" src="./images/Tents_index.jpg" alt="Tents" width="155" height="155" />
           </span>
           <span onClick={() => handleCategoryClick('Cooking Utensils')}>
-            <img src="./images/cooking_utensils_index.jpg" alt="Cooking Utensils" width="155" height="155" />
+            <img className="linkCur" src="./images/cooking_utensils_index.jpg" alt="Cooking Utensils" width="155" height="155" />
           </span>
           <span onClick={() => handleCategoryClick('Sleeping bags')}>
-            <img src="./images/sleeping-bags_index.jpg" alt="Sleeping Bags" width="155" height="155" />
+            <img className="linkCur" src="./images/sleeping-bags_index.jpg" alt="Sleeping Bags" width="155" height="155" />
           </span>
         </div>
       </div>

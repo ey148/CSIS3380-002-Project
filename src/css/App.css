@@ -175,6 +175,8 @@ footer {
 }
 
 .popImg {
+  cursor: pointer;
+
   width: 155px;
   /* Set the desired width */
   height: 155px;
@@ -183,7 +185,9 @@ footer {
   /* This property ensures the image retains its aspect ratio and covers the entire box */
 }
 
-
+.linkCur {
+  cursor: pointer;
+}
 
 .shorterInput {
   width: 56px;
