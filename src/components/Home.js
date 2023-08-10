@@ -6,6 +6,7 @@ import apiLink from './config.js'
 const Home = () => {
   const navigate = useNavigate();
   const [maxRatings, setMaxRatings] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleProductClick = (productId) => {
     navigate(`/product/${productId}`, { state: { productId: productId } });
@@ -20,19 +21,12 @@ const Home = () => {
       const response = await axios.get(`${apiLink}/rating?productId=${productId}`);
       const ratings = response.data;
 
-      //const filteredRatings = ratings.filter(rating => rating.productId === productId);
-      //if (filteredRatings.length === 0) {
-      //  return 0;
-      //}
-
-      //const totalRating = filteredRatings.reduce((acc, rating) => {
-        const totalRating = ratings.reduce((acc, rating) => {  
+      const totalRating = ratings.reduce((acc, rating) => {  
         return acc + rating.rating;
       }, 0);
 
       console.log("productId_cal", productId + '-' + totalRating + '-' + ratings.length )
 
-      //const averageRating = totalRating / filteredRatings.length;
       const averageRating = totalRating / ratings.length;
 
       return averageRating;
@@ -46,26 +40,22 @@ const Home = () => {
     const fetchMaxRatings = async () => {
       const categories = ['Tent', 'Cooking Utensils', 'Sleeping bags'];
       const maxRatingsByCategory = {};
+
+      setIsLoading(true);
   
       for (const category of categories) {
         try {
-          //const response = await axios.get(`${apiLink}/product/`);
           const response = await axios.get(`${apiLink}/product?category=${category}`);
           const products = response.data;
           console.log("category: ", category);
           console.log("category length: ", products.length);
   
-          // Filter products by category
-          //const filteredProducts = products.filter(product => product.category === category);
-          //console.log("category_start", category + '-' + products.length)
-
           let maxRating = 0;
           let maxRatingProduct = null;
   
-          //for (const product of filteredProducts) {
           for (const product of products) {
             const averageRating = await calculateAverageRating(product.productId);
-            console.log("product", product.productId + '-' + averageRating)
+            console.log("product", product.productId)
             if (averageRating > maxRating) {
               maxRating = averageRating;
               maxRatingProduct = product;
@@ -79,6 +69,8 @@ const Home = () => {
       }
   
       setMaxRatings(maxRatingsByCategory);
+
+      setIsLoading(false);
     };
   
     fetchMaxRatings();
@@ -110,23 +102,28 @@ const Home = () => {
       <h3 className="subtitle">Popularity Items</h3>
       <div className="table">
         <div className="row">
-          {maxRatings['Tent'] && (
-            <span onClick={() => handleProductClick(maxRatings['Tent'].productId)}>
-              <img className="popImg" src={maxRatings['Tent'].img_src} alt="Tents" />
-            </span>
-          )}
-          {maxRatings['Cooking Utensils'] && (
-            <span onClick={() => handleProductClick(maxRatings['Cooking Utensils'].productId)}>
-              <img className="popImg" src={maxRatings['Cooking Utensils'].img_src} alt="Cooking Utensils" />
-            </span>
-          )}
-          {maxRatings['Sleeping bags'] && (
-            <span onClick={() => handleProductClick(maxRatings['Sleeping bags'].productId)}>
-              <img className="popImg" src={maxRatings['Sleeping bags'].img_src} alt="Sleeping Bags" />
-            </span>
-          )}
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            <>
+            {maxRatings['Tent'] && (
+              <span onClick={() => handleProductClick(maxRatings['Tent'].productId)}>
+                <img className="popImg" src={maxRatings['Tent'].img_src} alt="Tents" />
+              </span>
+            )}
+            {maxRatings['Cooking Utensils'] && (
+              <span onClick={() => handleProductClick(maxRatings['Cooking Utensils'].productId)}>
+                <img className="popImg" src={maxRatings['Cooking Utensils'].img_src} alt="Cooking Utensils" />
+              </span>
+            )}
+            {maxRatings['Sleeping bags'] && (
+              <span onClick={() => handleProductClick(maxRatings['Sleeping bags'].productId)}>
+                <img className="popImg" src={maxRatings['Sleeping bags'].img_src} alt="Sleeping Bags" />
+              </span>
+            )}
+            </>
+          )}  
         </div>
-        
       </div>
     </div>
   );
