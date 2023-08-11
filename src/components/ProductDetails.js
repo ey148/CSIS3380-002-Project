@@ -72,7 +72,7 @@ const ProductDetails = () => {
 
   //check Login before rating
   function checkLogin() {
-      if (userId == null || userId === 0) {
+      if (userId == null || userId == 0) {
             const returnUrl = encodeURIComponent(`/product/${productId}`);
             window.location = `/login?return=${returnUrl}`;
             return; 

@@ -131,23 +131,46 @@ const ProductsOverview = () => {
 
   return (
     <div className="main-content">
-      <h2>Product Overview</h2>
-      <div className="searchbar-container">
-        <h4 className="searchbar">
-          <input type="text" id="inputName" placeholder="Input product name" />
-          <input type="button" value="Search" id="searchBtn" onClick={handleSearch} />
-        </h4>
-        <ul className="product-nav">
-          <li className={selectedCategory === 'Tent' ? 'active' : ''} onClick={() => handleCategoryClick('Tent')}>
-            <h3><u>Tents</u></h3>
-          </li>
-          <li className={selectedCategory === 'Cooking Utensils' ? 'active' : ''} onClick={() => handleCategoryClick('Cooking Utensils')}>
-            <h3><u>Cooking Utensils</u></h3>
-          </li>
-          <li className={selectedCategory === 'Sleeping bags' ? 'active' : ''} onClick={() => handleCategoryClick('Sleeping bags')}>
-            <h3><u>Sleeping bags</u></h3>
-          </li>
-        </ul>
+      <div className='container-md'>
+        
+        <h3 id="pageTitle">Product Overview</h3>
+        
+        <div className="searchbar-container">
+          
+          {/* <h4 className="searchbar">
+            <input type="text" id="inputName" placeholder="Input product name" />
+            <input type="button" value="Search" id="searchBtn" onClick={handleSearch} />
+          </h4> */}
+
+          <div class="input-group">
+              <div class="form-outline">
+                <input type="text" placeholder="keyword search" id="inputName" className="form-control" />  
+              </div>
+              <button id="searchBtn" type="button" className="btn btn-primary" onClick={handleSearch}>
+                    <i className="bi bi-search"></i>
+              </button>
+          </div>
+          
+          {/* <ul className="product-nav">
+            <li className={selectedCategory === 'Tent' ? 'active' : ''} onClick={() => handleCategoryClick('Tent')}>
+              <h3><u>Tents</u></h3>
+            </li>
+            <li className={selectedCategory === 'Cooking Utensils' ? 'active' : ''} onClick={() => handleCategoryClick('Cooking Utensils')}>
+              <h3><u>Cooking Utensils</u></h3>
+            </li>
+            <li className={selectedCategory === 'Sleeping bags' ? 'active' : ''} onClick={() => handleCategoryClick('Sleeping bags')}>
+              <h3><u>Sleeping bags</u></h3>
+            </li>
+          </ul> */}
+
+          <p><span id="filter">Filter by category:</span></p>
+          <div class="btn-group shadow-0" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-outline-secondary" data-mdb-color="dark" onClick={() => handleCategoryClick('Tent')}>Tents</button>
+            <button type="button" class="btn btn-outline-secondary" data-mdb-color="dark" onClick={() => handleCategoryClick('Cooking Utensils')}>Cooking Utensils</button>
+            <button type="button" class="btn btn-outline-secondary" data-mdb-color="dark" onClick={() => handleCategoryClick('Sleeping bags')}>Sleeping Bags</button>
+          </div>
+
+        </div>
 
       </div>
 
