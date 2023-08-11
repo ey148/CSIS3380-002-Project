@@ -1,8 +1,8 @@
 import React from 'react';
 
 const ContactUs = () => (
-    <div className="main-content">
-        <p>Welcome to our Camping Cart!</p>
+    <div className="container-md">
+        <h3 id="pageTitle">Welcome to our Camping Cart!</h3>
 
         <p>At Camping Cart, we believe that every outdoor adventure deserves the best gear. Whether you're a seasoned camper or just starting to explore the great outdoors, we are here to equip you with top-notch camping tools and equipment.
 
@@ -17,8 +17,9 @@ const ContactUs = () => (
         <br /><p>Email: enquiry@campingcart.com<br />
             Tel:236-123-4567</p>
 
-        <br /><p>Your camping companions,<br />
+        <br/><p>Your camping companions,<br />
             Camping Cart</p>
+        <br />
     </div >
 );
 

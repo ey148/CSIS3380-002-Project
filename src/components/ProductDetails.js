@@ -115,27 +115,6 @@ const ProductDetails = () => {
     }
   };
 
-  //useEffect(() => {
-  //   // Fetch product details from the server using axios
-  //   axios
-  //     .get(`http://localhost:5000/product/${productId}`)
-  //     .then((response) => {
-  //       setProductData(response.data); // Set the fetched product data to the state
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error fetching product details:', error);
-  //     });
-
-  //   axios
-  //     .get('http://localhost:5000/rating/')
-  //     .then((response) => {
-  //       setRatings(response.data); // Set the fetched products to the state
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error fetching ratings:', error);
-  //     });
-  // }, [productId]);
-
   useEffect(() => {
     console.log(ratings);
 
@@ -211,30 +190,39 @@ const ProductDetails = () => {
   
   return (
     <div className="main-content">
-      <div className="content-display">
-        <h2>{productData.title}</h2>
+      <div className="container-md">
+        <h3 id="pageTitle">{productData.title}</h3>
         <div className="LR-display">
           <div id="detailLeftDiv">
             <img className="detailImg" src={productData.img_src} alt="productimage" />
           </div>
           <div id="detailRightDiv">
-            <h5 className="brand&category">{productData.brand} - {productData.category}</h5>
-            <h4>{productData.model}</h4>
+            <h5 className="brandAndCategory">{productData.brand} - {productData.category}</h5>
+            <h4 className="model">{productData.model}</h4>
             <p className="desc">{productData.description}</p>
-            <h4>CAD {productData.price}</h4>
+            <h4 className="price">CAD {productData.price}</h4>
 
-            <p>Rating: {stars}</p>
+            <p className="tag">Rating: {stars}</p>
 
             {ratingSubmitted || rated ? (
               <p>Thanks for your rating!</p>
               ) 
               : 
               (
-                <p>
-                  <label>Your Rating(1-5): </label> 
-                  <input type="number" id="inputRating" name="inputRating" placeholder={inputRating} min="1" max="5" onChange={handleInputRatingChange} className="shorterInput" />
-                  <input type="button" id="BtnInputRating" value="Rate" onClick={handleSubmitRating} />
-                </p>
+                  // <div class="input-container">
+                  //   <label className="tag">Your Rating(1-5): </label> 
+                  //   <input type="number" id="inputRating" name="inputRating" placeholder={inputRating} min="1" max="5" onChange={handleInputRatingChange} className="shorterInput" />
+                  //   {/* <input type="button" className="btn btn-primary" value="Rate" onClick={handleSubmitRating} /> */}
+                  //   <button className="btn btn-primary btn-sm" onClick={handleSubmitRating}>Rate</button>
+                  // </div>
+
+                  <div class="input-container">
+                    <label className="tag">Your Rating(1-5): </label> 
+                    <div class="input-button-container">
+                        <input type="number" id="inputRating" name="inputRating" placeholder={inputRating} min="1" max="5" onChange={handleInputRatingChange} className="shorterInput" />
+                        <button className="btn btn-primary btn-sm" onClick={handleSubmitRating}>Rate</button>
+                    </div>
+                  </div>
               )
             }
 

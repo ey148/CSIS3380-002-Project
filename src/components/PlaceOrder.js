@@ -72,11 +72,11 @@ const PlaceOrder = (props) => {
 
     return(
         <div>
-            <form>
-                <label htmlFor="Quantity">Select quantity: </label>
+            <form class="input-container">
+                <label htmlFor="Quantity" className="tag">Select quantity: </label>
                 <input type="number" id="quantity" name="quantity" placeholder={quantity} min="1" onChange={handleChange} className="shorterInput"/>
             </form><br/>
-            <button onClick={(event) => handleOrderClick(event, props.productId, props.productTitle, props.price, quantity)}>Add to Shopping Cart</button>
+            <button className="btn btn-primary" onClick={(event) => handleOrderClick(event, props.productId, props.productTitle, props.price, quantity)}>Add to Shopping Cart</button>
         </div>
     )
 }
