@@ -72,8 +72,10 @@ const ProductDetails = () => {
 
   //check Login before rating
   function checkLogin() {
-      if (userId == null || userId === 0) {
+      console.log(`userId:`, userId);
+      if (userId == null || userId == 0) {
             const returnUrl = encodeURIComponent(`/product/${productId}`);
+            console.log(`returnUrl:`, returnUrl);
             window.location = `/login?return=${returnUrl}`;
             return; 
       }
@@ -84,8 +86,8 @@ const ProductDetails = () => {
     setInputRating(event.target.value);
   };
 
-  const handleSubmitRating = () => {
-
+  const handleSubmitRating = (event) => {
+    event.preventDefault();
     checkLogin();
 
     if (inputRating !== '') {

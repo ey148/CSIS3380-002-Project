@@ -36,32 +36,30 @@ const Header = (props) => {
                                 //NOT Logged In
                                 <div className="nav-item active" id="loginBtn">
                                     <NavLink to="/login">
-                                        <button class="btn btn-secondary" type="button"><i className="bi bi-person-circle"/></button>
+                                        <button className="btn btn-secondary" type="button"><i className="bi bi-person-circle"/></button>
                                     </NavLink>
                                 </div>
                                 :
                                 //Logged In                                
                                 <div className="nav-item active" id="loginBtn">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i className="bi bi-person-circle"/> {props.fname}
                                     </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         {/* <li><a class="dropdown-item">My Order</a></li>  */}
-                                        <li><hr class="dropdown-divider"/></li>
-                                        <li><a class="dropdown-item" onClick={handleLogout}>Logout</a></li>
+                                        <li><hr className="dropdown-divider"/></li>
+                                        <li><a className="dropdown-item" onClick={handleLogout}>Logout</a></li>
                                     </ul>
                                 </div>
                             }
                                 
                             <div className="nav-item active" id="cartBtn">
                                 <NavLink to="/cart">
-                                    <button class="btn btn-secondary" type="button"><i className="bi bi-cart-fill"/></button>
+                                    <button className="btn btn-secondary" type="button"><i className="bi bi-cart-fill"/></button>
                                 </NavLink>
                             </div>
                         </div>
                     </ul>
-                
-                
                 </div>
             </div>
                                
