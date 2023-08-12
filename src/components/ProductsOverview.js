@@ -133,7 +133,7 @@ const ProductsOverview = () => {
     <div className="main-content">
       <div className='container-md'>
         
-        <h3 id="pageTitle">Product Overview</h3>
+        <h3 className="pageTitle">Product Overview</h3>
         
         <div className="searchbar-container">
           

@@ -191,7 +191,7 @@ const ProductDetails = () => {
   return (
     <div className="main-content">
       <div className="container-md">
-        <h3 id="pageTitle">{productData.title}</h3>
+        <h3 className="pageTitle">{productData.title}</h3>
         <div className="LR-display">
           <div id="detailLeftDiv">
             <img className="detailImg" src={productData.img_src} alt="productimage" />
@@ -228,6 +228,7 @@ const ProductDetails = () => {
 
             {isStock ? (
               <PlaceOrder
+                productImg = {productData.img_src}
                 productId={productData.productId}
                 productTitle={productData.title}
                 price={productData.price}

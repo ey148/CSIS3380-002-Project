@@ -2,9 +2,21 @@ const router = require('express').Router();
 let Order = require('../models/orderList.model');
 
 router.route('/').get((req, res) => {
-    Order.find()
-        .then((order) => res.json(order))
-        .catch((err) => res.status(400).json('Error: ' + err));
+    const userId = req.query.userId;
+
+    if (userId){
+        Order.find({ userId: userId })
+            .then((items) => {
+                res.json(items);
+                console.log(`Show selected item of user${userId}: ` + items);
+            })
+            .catch((err) => res.status(400).json('Error: ' + err));
+    }else{
+        Order.find()
+            .then((order) => res.json(order))
+            .catch((err) => res.status(400).json('Error: ' + err));
+    }
+    
 });
 
 router.route('/add').post(async (req, res) => {
@@ -33,16 +45,16 @@ router.route('/add').post(async (req, res) => {
 });
 
 //get specific order
-router.route('/:userId').get(async (req, res) => {
+// router.route('/:userId').get(async (req, res) => {
     
-    const userId = req.params.userId;
+//     const userId = req.query.userId;
 
-    await Order.findOne({ userId: userId })
-        .then((item) => {
-            res.json(item);
-            console.log('show selected item: ' + item);
-        })
-        .catch((err) => res.status(400).json('Error: ' + err));
-});
+//     await Order.find({ userId: userId })
+//         .then((items) => {
+//             res.json(items);
+//             console.log(`Show selected item of user${userId}: ` + items);
+//         })
+//         .catch((err) => res.status(400).json('Error: ' + err));
+// });
 
 module.exports = router;

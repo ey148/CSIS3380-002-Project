@@ -6,10 +6,39 @@ body, .appDiv {
   /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
 }
 
-#pageTitle{
-  margin-top: 20px;
-  margin-bottom: 20px;
+.pageTitle{
+  margin-top: 30px;
+  margin-bottom: 40px;
 }
+
+.image-container {
+  position: relative;
+  width: 100%; /* You might adjust this based on your design */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+  z-index: -1;
+}
+
+/* .tagOnImg {
+  font-size: 60px;
+  color: white;
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  /* background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px; 
+  border-radius: 5px; 
+  text-align: center;
+  
+} */
 
 /* Header & Footer */
 .navbar.navbar-light{
@@ -29,8 +58,8 @@ body, .appDiv {
 }
 
 .navbar-nav .nav-item.active .nav-link {
-  color: #6C3428; /* Set the initial font color */
-  transition: color 0.3s; /* Add a smooth transition effect */
+  color: #6C3428; 
+  transition: color 0.3s; 
 }
 
 .navbar-nav .nav-item.active .nav-link:hover {
@@ -225,10 +254,12 @@ body, .appDiv {
 .btn.btn-primary{
   background-color: #6C3428;
   border:none;
+  margin-bottom: 30px;
 }
 
 .btn.btn-primary.btn-sm{
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 .btn.btn-primary:hover, .btn.btn-primary.btn-sm:hover {
@@ -246,6 +277,7 @@ body, .appDiv {
   align-items: center;
   gap: 0px; 
 }
+
 .popImg {
   cursor: pointer;
   width: 155px;
@@ -256,12 +288,93 @@ body, .appDiv {
   /* This property ensures the image retains its aspect ratio and covers the entire box */
 }
 
+/* Shopping Cart */
+.subHeader{
+  color: #6C3428;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
 
+#emptyCart{
+  margin-bottom:350px;
+}
 
-/* .linkCur {
-  cursor: pointer;
-} */
+.itemQuantity, .itemPrice{
+  text-align: center;
+}
+
+.cartBtn{
+  border: none;
+  background-color: transparent;
+  color: #b15742;
+}
+
+.newQtyInput{
+  text-align: center;
+  width: 50px;
+}
+
+#col1{
+  width: 40%;
+}
+
+#col2, #col3, #col4{
+  width: 20%;
+}
 
 .shorterInput {
   width: 56px;
+}
+
+.table {
+  border-radius: 10px; /* You can adjust the value to your preference */
+  overflow: hidden; /* This prevents the borders from extending beyond the rounded corners */
+}
+
+/* LoginPage */
+
+#login-title{
+  text-align: center;
+}
+
+.container-md-login {
+  display: flex;
+  justify-content: center; 
+}
+
+.login-container {  
+  box-sizing: border-box;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  place-items: center;
+  margin-top: 30px;
+  margin-bottom:30px;
+  width: 40%;
+  align-items: center;
+}
+
+.form-group, .form-group-btn{
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.form-group-btn{
+  display: flex;
+  justify-content: center;
+}
+
+.list-table{
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+#col4{
+  width: 40%;
+}
+
+#col5, #col6{
+  width: 20%;
 }

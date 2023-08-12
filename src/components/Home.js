@@ -78,12 +78,18 @@ const Home = () => {
 
   return (
     <div className="main-content" id="homeDiv">
-      <img src="./images/index_image.jpg" id="mainImg" alt="camping" width="1000" />
+      {/* <img src="./images/index_image.jpg" id="mainImg" alt="camping" width="1000" /> */}
+      {/* <img src="./images/index_image_1.jpg" id="mainImg" alt="camping" width="100%" />
+      <h2 className="subtitle">Everything you need for camping!</h2> */}
+
+      <div>
+          <img src="./images/index_image_1.jpg" id="mainImg" alt="camping" width="100%" />
+          {/* <h2 className="tagOnImg">Where Wilderness Meets Convenience</h2> */}
+      </div>
 
       <h2 className="subtitle">Everything you need for camping!</h2>
-
       <div className="home-table-container">
-          <div class="row">
+          <div className="row">
               <div className="col" onClick={() => handleCategoryClick('Tent')}>
                   <h5><u>Tents</u></h5>
                   <img src="./images/Tents_index.jpg" alt="Tents" width="155" height="155" />
@@ -107,7 +113,7 @@ const Home = () => {
               <p style={{ fontWeight: "bold", textAlign: "center"}}>Loading...</p>
               :
               (
-                <div class="row">
+                <div className="row">
                     <div className="col" >
                         {maxRatings['Tent'] && (
                             <span onClick={() => handleProductClick(maxRatings['Tent'].productId)}>

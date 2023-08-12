@@ -69,18 +69,26 @@ const LoginPage = (props) => {
     };
     
     return (
-        <div>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username:</label><br/>
-                <input type="text" id="username" name="username"></input><br/><br/>
-                <label htmlFor="password">Password:</label><br/>
-                <input type="password" id="password" name="password"></input><br/><br/>
-                <button type="submit">Login</button>
-            </form>
-            {user && !(username === user.username && password === user.password) && 
-                <p style={{ color: 'red' }}>Login invalid</p>
-            }
+        <div className="container-md-login">
+            <div className="login-container">
+                <h3 id="login-title">Login</h3>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label  htmlFor="username">Username:</label><br/>
+                        <input type="text" id="username" name="username" className="form-control"></input>
+                    </div>
+                    <div class="form-group">
+                        <label htmlFor="password">Password:</label><br/>
+                        <input type="password" id="password" name="password" className="form-control"></input>
+                    </div>
+                    <div class="form-group-btn">
+                        <button type="submit" className="btn btn-primary" id="login-btnssss">Login</button>
+                    </div>                        
+                </form>
+                {user && !(username === user.username && password === user.password) && 
+                    <p style={{ color: 'red' }}>Login invalid</p>
+                }
+            </div>
         </div>
         
     );

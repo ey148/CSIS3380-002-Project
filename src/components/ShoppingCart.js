@@ -11,33 +11,17 @@ const ShoppingCart = () => {
     const [totalPrice, setTotalPrice] = useState(0)
     const [selectedItem, setSelectedItem] = useState([]);
     const [updatedItem, setUpdatedItem] = useState("");
-    // const [orderDate, setOrderDate] = useState('');
     const [cartUpdateCounter, setCartUpdateCounter] = useState(0);
     const [userId] = useState(localStorage.getItem('userId'));
     
     console.log(`userId= ${userId}`);
 
-    useEffect(() => {       
-        
-        // //search full cart
-        // axios
-        //     .get('http://localhost:5000/cart/')
-        //     .then((response) => {
-        //         setItemList(response.data)
-        //         setTotalQuantity(itemList.reduce((total, item) => total + item.quantity, 0));
-        //         setTotalPrice(parseFloat(itemList.reduce((total, item) => total + item.priceSubTotal, 0)));
-        //     })
-        //     .catch((error) => {
-        //         console.log(error)
-        //     })
-        
+    useEffect(() => {              
         //search cart by user
         axios
             .get(`${apiLink}/cart?userId=${userId}`)
             .then((response) => {
                 setItemList(response.data);
-                //setTotalQuantity(itemList.reduce((total, item) => total + item.quantity, 0));
-                //setTotalPrice(itemList.reduce((total, item) => total + parseFloat(item.priceSubTotal), 0).toFixed(2));
             })
             .catch((error) => {
                 console.log(error);
@@ -61,13 +45,6 @@ const ShoppingCart = () => {
         }
 
     }, [itemList]);
-
-    // useEffect(() => {
-    //     // Get the current date and format it as 'MM/DD/YYYY'
-    //     const today = new Date();
-    //     const formattedDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
-    //     setOrderDate(formattedDate);
-    // }, []);
 
     useEffect(() => {
 
@@ -124,7 +101,6 @@ const ShoppingCart = () => {
         axios
             .delete(`${apiLink}/cart/delete/${_id}`)
             .then((response) => {
-                // window.location = '/cart';
                 setCartUpdateCounter(prevCounter => prevCounter + 1);
             })
             .catch((error) => {
@@ -162,82 +138,82 @@ const ShoppingCart = () => {
     }
 
     const clearCart = () => {
-        // try {
-        //     axios.delete(`http://localhost:5000/cart/clear`);
-        //     console.log("Cart cleared successfully.");
-        //     setTotalQuantity(0);
-        // } catch (error) {
-        //     console.log("Error clearing cart:", error);
-        // }
-
         //clear for specific user
-        try {
-            axios.delete(`${apiLink}/cart/clear/${userId}`);
-            console.log(`Cart cleared for user${userId} successfully.`);
-            setTotalQuantity(0);
-        } catch (error) {
-            console.log("Error clearing cart:", error);
-        }
+        axios.delete(`${apiLink}/cart/clear/${userId}`)
+            .then(() => {
+                console.log(`Cart cleared for user${userId} successfully.`);
+                setTotalQuantity(0);
+                setItemList([]);
+            })  
+            .catch((error) => {
+                console.log(error)
+            })
     };
 
-    //clear by userId
-
-
     return (
-        <div className="main-content">
-            <h2>Shopping Cart</h2>
-            {totalQuantity === 0 && itemList.length===0 ?
-                <h4>Your cart is empty</h4>
+        <div className="container-md">
+            <h2 className="pageTitle">Shopping Cart</h2>
+            {totalQuantity==0 && itemList.length===0 ?
+                <h4 className="subHeader" id="emptyCart">Your cart is empty</h4>
                 :
                 <div>
-                    <h4>Total order: {totalQuantity} items</h4>
+                    <h4 className="subHeader">Total order: {totalQuantity} item(s)</h4>
                     {/* <h4>Order Date:{orderDate}</h4> */}
-                    <table>
+                    <table className="table table-hover">
                         <thead>
                             <tr>
-                                <th>Item</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
+                                {/* <th scope="col"></th> */}
+                                <th scope="col" id="col1">Item(s)</th>
+                                <th scope="col" id="col2" className="itemQuantity">Quantity</th>
+                                <th scope="col" id="col3" className="itemPrice">Price</th>
+                                <th scope="col" id="col4"></th>
                             </tr>
                         </thead>
                         <tbody>
                             {itemList.map((item, index) => (
                                 item._id === selectedItem._id ?
-                                    <tr key={index+1}>
+
+                                    // Editing view                               
+                                    <tr scope="row" key={index+1}>
+                                        {/* <td><img src={item.productImg} alt="" width="100" height="100"/></td>     */}
                                         <td>{item.productTitle}</td>
                                         <td>
-                                            <input id="newQty" type="number" placeholder={item.quantity} min="1" />
+                                            <input className="newQtyInput" id="newQty" type="number" placeholder={item.quantity} min="1" />
                                         </td>
-                                        <td>${item.priceSubTotal}</td>
+                                        <td>${(item.priceSubTotal).toFixed(2)}</td>
                                         <td>
-                                            <button onClick={(event) => changeQuantity(event, item._id)} style={{ border: 'none', backgroundColor: 'transparent', color: 'lightgray' }}>
+                                            <button className="cartBtn" onClick={(event) => changeQuantity(event, item._id)}>
                                                 <i className="bi bi-cart-check"></i>
                                             </button>
                                         </td>
                                     </tr>
                                     :
-                                    <tr key={index+1}>
+
+                                    // Normal view  
+                                    <tr scope="row" key={index+1}>
+                                        {/* <td><img src={item.productImg} alt="" width="100" height="100"/></td>     */}
                                         <td>{item.productTitle}</td>
-                                        <td style={{ textAlign: 'center' }}>{item.quantity}</td>
-                                        <td style={{ textAlign: 'right' }}>${item.priceSubTotal}</td>
+                                        <td className="itemQuantity">{item.quantity}</td>
+                                        <td className="itemPrice">${(item.priceSubTotal).toFixed(2)}</td>
                                         <td>
-                                            <button onClick={(event) => handleEdit(event, item._id)} style={{ border: 'none', backgroundColor: 'transparent', color: 'black' }}>
+                                            <button className="cartBtn"onClick={(event) => handleEdit(event, item._id)}>
                                                 <i className="bi bi-pen"></i>
                                             </button>
-                                            <button onClick={(event) => handleDelete(event, item._id)} style={{ border: 'none', backgroundColor: 'transparent', color: 'black' }}>
+                                            <button className="cartBtn" onClick={(event) => handleDelete(event, item._id)}>
                                                 <i className="bi bi-trash"></i>
                                             </button>
                                         </td>
                                     </tr>
                             ))}
-                            <tr>
-                                <td><strong>Grand total:</strong></td>
+                            <tr scope="row">
+                                {/* <td></td>*/}
+                                <td colspan="2"><strong>Grand total:</strong></td>
+                                <td className="itemPrice"><strong>${totalPrice}</strong></td>
                                 <td></td>
-                                <td><strong>${totalPrice}</strong></td>
                             </tr>
                         </tbody>
                     </table>
-                    <button onClick={(event) => postToOrderList(event)}>Confirm Order</button>
+                    <button className="btn btn-primary" onClick={(event) => postToOrderList(event)}>Confirm Order</button>
                 </div>
             }
 

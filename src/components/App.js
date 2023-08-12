@@ -13,6 +13,7 @@ import ContactUs from './ContactUs'
 import Footer from "./Footer"
 import ShoppingCart from './ShoppingCart';
 import LoginPage from './LoginPage'
+import MyOrders from './MyOrders'
 
 function App() {
   
@@ -36,7 +37,6 @@ function App() {
 
   }, [])
 
-  //added
   const updateUser = (resUserId, resFName) => {
       setUserId(resUserId);
       setFName(resFName);
@@ -57,6 +57,7 @@ function App() {
               <Route path="/product/:productId" element={<ProductDetails />} />
               <Route path="/cart" element={<ShoppingCart/>}/>
               <Route path="/contact" element={<ContactUs />} />
+              <Route path="/myorders" element={<MyOrders/>}/>
               <Route path="/login" element={<LoginPage updateUser={updateUser} />} />
             </Routes>
 
