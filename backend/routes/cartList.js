@@ -1,20 +1,7 @@
 const router = require('express').Router();
 let Cart = require('../models/cartList.model');
 
-//full cart
-// router.route('/').get((req, res) => {
-//     Cart.find()
-//         .then((cartItems) => res.json(cartItems))
-//         .catch((err) => res.status(400).json('Error: ' + err));
-// });
-
-//cart filtered by user
-//router.route('/').get((req, res) => {
-//     Cart.find({ userId: req.params.userId })
-//         .then((cartItems) => res.json(cartItems))
-//         .catch((err) => res.status(400).json('Error: ' + err));
-// });
-
+//Get cart by userId (using query)
 router.route('/').get(async (req, res) => {
     const userId = req.query.userId; // Get the userId from the query parameter
 
@@ -68,19 +55,6 @@ router.route('/:id').get(async (req, res) => {
         .catch((err) => res.status(400).json('Error: ' + err));
 });
 
-//getting by userId
-router.route('/user/:userId').get(async (req, res) => {
-    
-    await Cart.find({ userId: req.params.userId})
-        .then((item) => {
-            res.json(item);
-            console.log('show items by user: ' + req.params.userId);
-        })
-        .catch((err) => res.status(400).json('Error: ' + err));
-});
-
-
-
 router.route('/update/:id').post(async (req, res) => {
     console.log(req.params.id);
     await  Cart.findById(req.params.id)
@@ -108,15 +82,8 @@ router.route('/delete/:id').delete(async (req, res) => {
         .catch((err) => res.status(400).json('Error: ' + err));
 });
 
-//clear Cart when posted and confirmed
-router.route('/clear').delete((req, res) => {
-    Cart.deleteMany({})
-        .then(() => res.json('All CartItems deleted!'))
-        .catch((err) => res.status(400).json('Error: ' + err));
-});
-
+//clear Cart by userId after order confirmed
 router.route('/clear/:userId').delete((req, res) => {
-
     const userId = req.params.userId;
     Cart.deleteMany({userId: userId})
         .then(() => res.json(`CartItems for user${userId} deleted!`))
