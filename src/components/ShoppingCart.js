@@ -151,72 +151,74 @@ const ShoppingCart = () => {
     };
 
     return (
-        <div className="container-md">
-            <h2 className="pageTitle">Shopping Cart</h2>
-            {totalQuantity==0 && itemList.length===0 ?
-                <h4 className="subHeader" id="emptyCart">Your cart is empty</h4>
-                :
-                <div>
-                    <h4 className="subHeader">Total order: {totalQuantity} item(s)</h4>
-                    {/* <h4>Order Date:{orderDate}</h4> */}
-                    <table className="table table-hover">
-                        <thead>
-                            <tr>
-                                {/* <th scope="col"></th> */}
-                                <th scope="col" id="col1">Item(s)</th>
-                                <th scope="col" id="col2" className="itemQuantity">Quantity</th>
-                                <th scope="col" id="col3" className="itemPrice">Price</th>
-                                <th scope="col" id="col4"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {itemList.map((item, index) => (
-                                item._id === selectedItem._id ?
+        <div className="main-content">
+            <div className="container-md">
+                <h2 className="pageTitle">Shopping Cart</h2>
+                {totalQuantity==0 && itemList.length===0 ?
+                    <h4 className="subHeader" id="emptyCart">Your cart is empty</h4>
+                    :
+                    <div>
+                        <h4 className="subHeader">Total order: {totalQuantity} item(s)</h4>
+                        {/* <h4>Order Date:{orderDate}</h4> */}
+                        <table className="table table-hover">
+                            <thead>
+                                <tr>
+                                    {/* <th scope="col"></th> */}
+                                    <th scope="col" id="col1">Item(s)</th>
+                                    <th scope="col" id="col2" className="itemQuantity">Quantity</th>
+                                    <th scope="col" id="col3" className="itemPrice">Price</th>
+                                    <th scope="col" id="col4"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {itemList.map((item, index) => (
+                                    item._id === selectedItem._id ?
 
-                                    // Editing view                               
-                                    <tr scope="row" key={index+1}>
-                                        {/* <td><img src={item.productImg} alt="" width="100" height="100"/></td>     */}
-                                        <td>{item.productTitle}</td>
-                                        <td>
-                                            <input className="newQtyInput" id="newQty" type="number" placeholder={item.quantity} min="1" />
-                                        </td>
-                                        <td>${(item.priceSubTotal).toFixed(2)}</td>
-                                        <td>
-                                            <button className="cartBtn" onClick={(event) => changeQuantity(event, item._id)}>
-                                                <i className="bi bi-cart-check"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    :
+                                        // Editing view                               
+                                        <tr scope="row" key={index+1}>
+                                            {/* <td><img src={item.productImg} alt="" width="100" height="100"/></td>     */}
+                                            <td>{item.productTitle}</td>
+                                            <td>
+                                                <input className="newQtyInput" id="newQty" type="number" placeholder={item.quantity} min="1" />
+                                            </td>
+                                            <td>${(item.priceSubTotal).toFixed(2)}</td>
+                                            <td>
+                                                <button className="cartBtn" onClick={(event) => changeQuantity(event, item._id)}>
+                                                    <i className="bi bi-cart-check"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        :
 
-                                    // Normal view  
-                                    <tr scope="row" key={index+1}>
-                                        {/* <td><img src={item.productImg} alt="" width="100" height="100"/></td>     */}
-                                        <td>{item.productTitle}</td>
-                                        <td className="itemQuantity">{item.quantity}</td>
-                                        <td className="itemPrice">${(item.priceSubTotal).toFixed(2)}</td>
-                                        <td>
-                                            <button className="cartBtn"onClick={(event) => handleEdit(event, item._id)}>
-                                                <i className="bi bi-pen"></i>
-                                            </button>
-                                            <button className="cartBtn" onClick={(event) => handleDelete(event, item._id)}>
-                                                <i className="bi bi-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                            ))}
-                            <tr scope="row">
-                                {/* <td></td>*/}
-                                <td colspan="2"><strong>Grand total:</strong></td>
-                                <td className="itemPrice"><strong>${totalPrice}</strong></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button className="btn btn-primary" onClick={(event) => postToOrderList(event)}>Confirm Order</button>
-                </div>
-            }
+                                        // Normal view  
+                                        <tr scope="row" key={index+1}>
+                                            {/* <td><img src={item.productImg} alt="" width="100" height="100"/></td>     */}
+                                            <td>{item.productTitle}</td>
+                                            <td className="itemQuantity">{item.quantity}</td>
+                                            <td className="itemPrice">${(item.priceSubTotal).toFixed(2)}</td>
+                                            <td>
+                                                <button className="cartBtn"onClick={(event) => handleEdit(event, item._id)}>
+                                                    <i className="bi bi-pen"></i>
+                                                </button>
+                                                <button className="cartBtn" onClick={(event) => handleDelete(event, item._id)}>
+                                                    <i className="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                ))}
+                                <tr scope="row">
+                                    {/* <td></td>*/}
+                                    <td colspan="2"><strong>Grand total:</strong></td>
+                                    <td className="itemPrice"><strong>${totalPrice}</strong></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button className="btn btn-primary" onClick={(event) => postToOrderList(event)}>Confirm Order</button>
+                    </div>
+                }
 
+            </div>
         </div>
     )
 };

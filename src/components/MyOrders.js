@@ -30,7 +30,8 @@ const MyOrders = () => {
       }
 
     return (
-        <div className="container-md">
+        <div className="main-content">
+            <div className="container-md">
             <h2 className="pageTitle">My Orders</h2>
             { orderList.length===0 ?
                 <h4 className="subHeader">Your have no orders.</h4>
@@ -82,6 +83,8 @@ const MyOrders = () => {
             }
 
         </div>
+        </div>
+        
     )
 };
 
