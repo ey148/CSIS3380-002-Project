@@ -1,6 +1,7 @@
 const router = require('express').Router();
 let Order = require('../models/orderList.model');
 
+//included get orders by userId
 router.route('/').get((req, res) => {
     const userId = req.query.userId;
 
@@ -43,18 +44,5 @@ router.route('/add').post(async (req, res) => {
         })
         .catch((err) => res.status(400).json('Error: ' + err));
 });
-
-//get specific order
-// router.route('/:userId').get(async (req, res) => {
-    
-//     const userId = req.query.userId;
-
-//     await Order.find({ userId: userId })
-//         .then((items) => {
-//             res.json(items);
-//             console.log(`Show selected item of user${userId}: ` + items);
-//         })
-//         .catch((err) => res.status(400).json('Error: ' + err));
-// });
 
 module.exports = router;

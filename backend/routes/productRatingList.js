@@ -1,12 +1,7 @@
-// import { seedRatings } from '.../src/data/back-ratings.js'
-
 const router = require('express').Router();
 const Rating = require('../models/productRatingList.model');
 
 router.route('/').get((req, res) => {
-  // Rating.find()
-  //   .then((rating) => res.json(rating))
-  //   .catch((err) => res.status(400).json('Error: ' + err));
 
   const userId = req.query.userId;
   const productId = req.query.productId;
@@ -63,17 +58,6 @@ router.route('/add').post(async (req, res) => {
     })
     .catch((err) => res.status(400).json('Error: ' + err));
 
-  //insert seedRating
-  // try {
-  //     const ratingsToAdd = req.body; 
-
-  //     const insertedRatings = await Rating.insertMany(ratingsToAdd);
-
-  //     res.json(insertedRatings);
-  //     console.log('Ratings added:', insertedRatings);
-  // } catch (err) {
-  //     res.status(400).json('Error: ' + err);
-  // }
 });
 
 module.exports = router;
