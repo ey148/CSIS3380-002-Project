@@ -23,7 +23,6 @@ const ProductDetails = () => {
       setUserId(localStorage.getItem('userId'));
       console.log(`userId= ${userId}`);
 
-      //move from useEffect(),[productId] => productId will not change
       axios
         .get(`${apiLink}/product/${productId}`)
         .then((response) => {

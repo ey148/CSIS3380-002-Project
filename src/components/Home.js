@@ -78,13 +78,9 @@ const Home = () => {
 
   return (
     <div className="main-content" id="homeDiv">
-      {/* <img src="./images/index_image.jpg" id="mainImg" alt="camping" width="1000" /> */}
-      {/* <img src="./images/index_image_1.jpg" id="mainImg" alt="camping" width="100%" />
-      <h2 className="subtitle">Everything you need for camping!</h2> */}
 
       <div>
           <img src="./images/index_image_1.jpg" id="mainImg" alt="camping" width="100%" />
-          {/* <h2 className="tagOnImg">Where Wilderness Meets Convenience</h2> */}
       </div>
 
       <h2 className="subtitle">Everything you need for camping!</h2>

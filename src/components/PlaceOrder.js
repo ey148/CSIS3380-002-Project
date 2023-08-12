@@ -5,17 +5,6 @@ import apiLink from './config.js'
 const PlaceOrder = (props) => {
 
     const [quantity, setQuantity] = useState("1");
-    // const [userId] = useState(localStorage.getItem('userId'));
-
-    // useEffect(() => {
-    //     console.log(userId);
-
-    //     if (userId==null || userId===0){
-    //         const returnUrl = encodeURIComponent(`/product/${props.productId}`);
-    //         window.location = `/login?return=${returnUrl}`;
-    //     }
-
-    // }, [])
     const [userId, setUserId] = useState(localStorage.getItem('userId'));
 
     useEffect(() => {
@@ -29,11 +18,6 @@ const PlaceOrder = (props) => {
 
         //check Login before adding to cart
         props.checkLogin();
-        // if (userId == null || userId === "0") {
-        //     const returnUrl = encodeURIComponent(`/product/${props.productId}`);
-        //     window.location = `/login?return=${returnUrl}`;
-        //     return; 
-        // }
 
         console.log(`Product Data: id=${productId}, title=${productTitle}, price=${price}`);
         console.log(`Quantity: ${quantity}`);
@@ -67,8 +51,6 @@ const PlaceOrder = (props) => {
     const handleChange = (event) => {
         setQuantity(event.target.value); 
     };
-
-    //check quantity against stock
 
     return(
         <div>

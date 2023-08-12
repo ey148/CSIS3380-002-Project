@@ -28,8 +28,6 @@ const ProductBox = (props) => {
           <p>{props.brand}</p>
           <p>CAD {props.price}</p>
           <p>Rating: {renderStars()} ({props.countRating} review(s))</p>
-          
-          {/* <h4><u>View product details</u></h4> */}
         </ul>
       </div>
     </div>

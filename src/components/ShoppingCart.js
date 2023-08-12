@@ -159,11 +159,9 @@ const ShoppingCart = () => {
                     :
                     <div>
                         <h4 className="subHeader">Total order: {totalQuantity} item(s)</h4>
-                        {/* <h4>Order Date:{orderDate}</h4> */}
                         <table className="table table-hover">
                             <thead>
-                                <tr>
-                                    {/* <th scope="col"></th> */}
+                                <tr>}
                                     <th scope="col" id="col1">Item(s)</th>
                                     <th scope="col" id="col2" className="itemQuantity">Quantity</th>
                                     <th scope="col" id="col3" className="itemPrice">Price</th>
@@ -176,7 +174,6 @@ const ShoppingCart = () => {
 
                                         // Editing view                               
                                         <tr scope="row" key={index+1}>
-                                            {/* <td><img src={item.productImg} alt="" width="100" height="100"/></td>     */}
                                             <td>{item.productTitle}</td>
                                             <td>
                                                 <input className="newQtyInput" id="newQty" type="number" placeholder={item.quantity} min="1" />
@@ -192,7 +189,6 @@ const ShoppingCart = () => {
 
                                         // Normal view  
                                         <tr scope="row" key={index+1}>
-                                            {/* <td><img src={item.productImg} alt="" width="100" height="100"/></td>     */}
                                             <td>{item.productTitle}</td>
                                             <td className="itemQuantity">{item.quantity}</td>
                                             <td className="itemPrice">${(item.priceSubTotal).toFixed(2)}</td>
@@ -207,7 +203,6 @@ const ShoppingCart = () => {
                                         </tr>
                                 ))}
                                 <tr scope="row">
-                                    {/* <td></td>*/}
                                     <td colspan="2"><strong>Grand total:</strong></td>
                                     <td className="itemPrice"><strong>${totalPrice}</strong></td>
                                     <td></td>
