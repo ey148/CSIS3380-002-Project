@@ -8,6 +8,7 @@ const LoginPage = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [user, setUser] = useState('');
+    const [usernameExists, setUsernameExists] = useState(true);
     
     const location = useLocation();
     const returnUrl = new URLSearchParams(location.search).get('return');
@@ -27,7 +28,13 @@ const LoginPage = (props) => {
         axios.get(`${apiLink}/user/${username}`)
             .then(response => {
                 console.log(response.data);
-                setUser(response.data);
+
+                if (response.data === null){
+                    setUsernameExists(false);
+                }
+                else{
+                    setUser(response.data);
+                }
             })
             .catch((error) => {
                 console.log(error);
@@ -76,7 +83,7 @@ const LoginPage = (props) => {
                     <h3 id="login-title">Login</h3>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label  htmlFor="username">Username:</label><br/>
+                            <label htmlFor="username">Username:</label><br/>
                             <input type="text" id="username" name="username" className="form-control"></input>
                         </div>
                         <div class="form-group">
@@ -87,8 +94,8 @@ const LoginPage = (props) => {
                             <button type="submit" className="btn btn-primary" id="login-btnssss">Login</button>
                         </div>                        
                     </form>
-                    {user && !(username === user.username && password === user.password) && 
-                        <p style={{ color: 'red' }}>Login invalid</p>
+                    {!usernameExists && !(username === user.username && password === user.password) &&  
+                        <p style={{ color: 'red', textAlign: 'center' }}>Login invalid</p>
                     }
                 </div>
             </div>
