@@ -91,6 +91,10 @@ body, .appDiv {
   margin-top: 20px;
 }
 
+.dropdown-item:active {
+  color: bisque;
+}
+
 /* Homepage */
 
 .main-content {

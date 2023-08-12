@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Header = (props) => {
@@ -46,10 +46,9 @@ const Header = (props) => {
                                         <i className="bi bi-person-circle"/> {props.fname}
                                     </button>
                                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        {/* <li><a class="dropdown-item">My Order</a></li>  */}
-                                        <li><NavLink to="/myorders" className="dropdown-item">My Orders</NavLink></li>
+                                        <li ><NavLink to="/myorders" className="dropdown-item" >My Orders</NavLink></li>
                                         <li><hr className="dropdown-divider"/></li>
-                                        <li><a className="dropdown-item" onClick={handleLogout}>Logout</a></li>
+                                        <li ><a href="#" className="dropdown-item" onClick={handleLogout}>Logout</a></li>
                                     </ul>
                                 </div>
                             }

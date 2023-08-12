@@ -42,7 +42,7 @@ const MyOrders = () => {
                     {orderList.map((order, index) => {
                             return (
                                 <div key={index+1} className="list-table">
-                                    <p>Order number: {order._id} / Date: {formatDate(order.createdAt)}</p>
+                                    <p>Order number: {order._id}<br/>Order date: {formatDate(order.createdAt)}</p>
         
                                     <table className="table table-hover">
                                         <thead>
