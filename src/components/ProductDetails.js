@@ -209,13 +209,6 @@ const ProductDetails = () => {
               ) 
               : 
               (
-                  // <div class="input-container">
-                  //   <label className="tag">Your Rating(1-5): </label> 
-                  //   <input type="number" id="inputRating" name="inputRating" placeholder={inputRating} min="1" max="5" onChange={handleInputRatingChange} className="shorterInput" />
-                  //   {/* <input type="button" className="btn btn-primary" value="Rate" onClick={handleSubmitRating} /> */}
-                  //   <button className="btn btn-primary btn-sm" onClick={handleSubmitRating}>Rate</button>
-                  // </div>
-
                   <div class="input-container">
                     <label className="tag">Your Rating(1-5): </label> 
                     <div class="input-button-container">

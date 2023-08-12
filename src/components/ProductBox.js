@@ -21,7 +21,7 @@ const ProductBox = (props) => {
   //updated to props.productData._id
   return (
     <div className="box" onClick={() => props.selectedProduct(props.productData.productId)}> 
-      <img className="detailImg" src={props.img} alt="product" />
+      <img className="overviewImg" src={props.img} alt="product" />
       <div>
         <h5>{props.title}</h5>
         <ul>
