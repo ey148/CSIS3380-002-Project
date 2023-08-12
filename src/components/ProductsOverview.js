@@ -136,11 +136,6 @@ const ProductsOverview = () => {
         <h3 className="pageTitle">Product Overview</h3>
         
         <div className="searchbar-container">
-          
-          {/* <h4 className="searchbar">
-            <input type="text" id="inputName" placeholder="Input product name" />
-            <input type="button" value="Search" id="searchBtn" onClick={handleSearch} />
-          </h4> */}
 
           <div class="input-group">
               <div class="form-outline">
@@ -150,18 +145,6 @@ const ProductsOverview = () => {
                     <i className="bi bi-search"></i>
               </button>
           </div>
-          
-          {/* <ul className="product-nav">
-            <li className={selectedCategory === 'Tent' ? 'active' : ''} onClick={() => handleCategoryClick('Tent')}>
-              <h3><u>Tents</u></h3>
-            </li>
-            <li className={selectedCategory === 'Cooking Utensils' ? 'active' : ''} onClick={() => handleCategoryClick('Cooking Utensils')}>
-              <h3><u>Cooking Utensils</u></h3>
-            </li>
-            <li className={selectedCategory === 'Sleeping bags' ? 'active' : ''} onClick={() => handleCategoryClick('Sleeping bags')}>
-              <h3><u>Sleeping bags</u></h3>
-            </li>
-          </ul> */}
 
           <p><span id="filter">Filter by category:</span></p>
           <div class="btn-group shadow-0" role="group" aria-label="Basic example">
