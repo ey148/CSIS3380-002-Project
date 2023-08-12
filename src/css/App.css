@@ -186,6 +186,7 @@ body, .appDiv {
   position: relative;
   display: grid;
   place-items: center;
+  cursor: pointer;
 }
 
 .box img {
@@ -261,8 +262,6 @@ body, .appDiv {
   color: red;
   font-weight: bold;
 }
-
-
 
 .btn.btn-primary{
   background-color: #6C3428;
