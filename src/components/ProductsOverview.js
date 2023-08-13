@@ -148,9 +148,9 @@ const ProductsOverview = () => {
 
           <p><span id="filter">Filter by category:</span></p>
           <div class="btn-group shadow-0" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-outline-secondary" data-mdb-color="dark" onClick={() => handleCategoryClick('Tent')}>Tents</button>
-            <button type="button" class="btn btn-outline-secondary" data-mdb-color="dark" onClick={() => handleCategoryClick('Cooking Utensils')}>Cooking Utensils</button>
-            <button type="button" class="btn btn-outline-secondary" data-mdb-color="dark" onClick={() => handleCategoryClick('Sleeping bags')}>Sleeping Bags</button>
+            <button type="button" className="btn btn-outline-secondary" data-mdb-color="dark" onClick={() => handleCategoryClick('Tent')}>Tents</button>
+            <button type="button" className="btn btn-outline-secondary" data-mdb-color="dark" onClick={() => handleCategoryClick('Cooking Utensils')}>Cooking Utensils</button>
+            <button type="button" className="btn btn-outline-secondary" data-mdb-color="dark" onClick={() => handleCategoryClick('Sleeping bags')}>Sleeping Bags</button>
           </div>
 
         </div>

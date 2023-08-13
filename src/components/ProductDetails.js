@@ -13,6 +13,7 @@ const ProductDetails = () => {
   const [ratingSubmitted, setRatingSubmitted] = useState(false);
   const [userId, setUserId] = useState(localStorage.getItem('userId'));
   const [rated, setRated] = useState(false);
+  const [numOfRatings, setNumOfRatings] = useState(0);
 
   //getting productId
   const productId = location.state?.productId;
@@ -137,6 +138,7 @@ const ProductDetails = () => {
 
       const averageRating = totalRating / productRatings.length;
 
+      setNumOfRatings(productRatings.length)
       return averageRating;
     };
 
@@ -201,7 +203,7 @@ const ProductDetails = () => {
             <p className="desc">{productData.description}</p>
             <h4 className="price">CAD {productData.price}</h4>
 
-            <p className="tag">Rating: {stars}</p>
+            <p className="tag">Rating: {stars} ({numOfRatings} review(s))</p>
 
             {ratingSubmitted || rated ? (
               <p>Thanks for your rating!</p>
