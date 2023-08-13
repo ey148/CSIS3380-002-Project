@@ -19,31 +19,33 @@ const PlaceOrder = (props) => {
         //check Login before adding to cart
         props.checkLogin();
 
-        console.log(`Product Data: id=${productId}, title=${productTitle}, price=${price}`);
-        console.log(`Quantity: ${quantity}`);
+        if (userId !== 0){
+            console.log(`Product Data: id=${productId}, title=${productTitle}, price=${price}`);
+            console.log(`Quantity: ${quantity}`);
 
-        //add to cartList
-        let priceSubTotal = price;
+            //add to cartList
+            let priceSubTotal = price;
 
-        if (quantity > 1){
-            priceSubTotal = (price * quantity).toFixed(2);
-            console.log(`Price= ${price}`);
-        }
+            if (quantity > 1){
+                priceSubTotal = (price * quantity).toFixed(2);
+                console.log(`Price= ${price}`);
+            }
 
-        const cartItem = { 
-            productId: productId,
-            productTitle: productTitle,
-            quantity: quantity,
-            price: price,
-            priceSubTotal: priceSubTotal,
-            userId: userId
-        };
-        
-        try {
-            await axios.post(`${apiLink}/cart/add`, cartItem);
-            window.location = '/cart';
-        } catch (error) {
-            console.log(error);
+            const cartItem = { 
+                productId: productId,
+                productTitle: productTitle,
+                quantity: quantity,
+                price: price,
+                priceSubTotal: priceSubTotal,
+                userId: userId
+            };
+            
+            try {
+                await axios.post(`${apiLink}/cart/add`, cartItem);
+                window.location = '/cart';
+            } catch (error) {
+                console.log(error);
+            }
         }
 
     };
