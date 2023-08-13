@@ -161,7 +161,7 @@ const ShoppingCart = () => {
                         <h4 className="subHeader">Total order: {totalQuantity} item(s)</h4>
                         <table className="table table-hover">
                             <thead>
-                                <tr>}
+                                <tr>
                                     <th scope="col" id="col1">Item(s)</th>
                                     <th scope="col" id="col2" className="itemQuantity">Quantity</th>
                                     <th scope="col" id="col3" className="itemPrice">Price</th>
