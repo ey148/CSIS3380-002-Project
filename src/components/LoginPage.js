@@ -86,11 +86,11 @@ const LoginPage = (props) => {
                             <label htmlFor="username">Username:</label><br/>
                             <input type="text" id="username" name="username" className="form-control"></input>
                         </div>
-                        <div class="form-group">
+                        <div className="form-group">
                             <label htmlFor="password">Password:</label><br/>
                             <input type="password" id="password" name="password" className="form-control"></input>
                         </div>
-                        <div class="form-group-btn">
+                        <div className="form-group-btn">
                             <button type="submit" className="btn btn-primary" id="login-btnssss">Login</button>
                         </div>                        
                     </form>
