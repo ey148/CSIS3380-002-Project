@@ -19,7 +19,7 @@ const PlaceOrder = (props) => {
         //check Login before adding to cart
         props.checkLogin();
 
-        if (userId !== 0){
+        if (userId != 0){
             console.log(`Product Data: id=${productId}, title=${productTitle}, price=${price}`);
             console.log(`Quantity: ${quantity}`);
 
